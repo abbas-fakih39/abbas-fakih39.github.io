@@ -1,0 +1,180 @@
+// Initialize EmailJS avec votre Public Key
+(function() {
+    emailjs.init("bLECYSz1NM7GcjAev"); // Remplacez par votre Public Key d'EmailJS
+})();
+
+// Défilement fluide pour les liens de navigation
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+        // Fermer le menu mobile s'il est ouvert
+        navMenu.classList.remove('active');
+    });
+});
+
+// Basculement du menu mobile
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+});
+
+// En-tête collant lors du défilement
+const header = document.getElementById('header');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+        header.style.boxShadow = 'none';
+    } else {
+        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    }
+
+    lastScroll = currentScroll;
+});
+
+// Animer les barres de compétences lors du défilement
+const skillsSection = document.querySelector('.skills');
+const skillBars = document.querySelectorAll('.skill-progress');
+let skillsAnimated = false;
+
+const animateSkills = () => {
+    skillBars.forEach(bar => {
+        const progress = bar.getAttribute('data-progress');
+        bar.style.width = progress + '%';
+    });
+};
+
+window.addEventListener('scroll', () => {
+    const skillsPosition = skillsSection.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight / 1.3;
+
+    if (skillsPosition < screenPosition && !skillsAnimated) {
+        animateSkills();
+        skillsAnimated = true;
+    }
+});
+
+// Intersection Observer pour les animations de fondu
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observer les cartes de projet et les cartes de compétences
+document.querySelectorAll('.project-card, .skill-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
+});
+
+// Bouton retour en haut
+const backToTopButton = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Soumission du formulaire de contact avec EmailJS
+const contactForm = document.getElementById('contact-form');
+const submitButton = contactForm.querySelector('button[type="submit"]');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Désactiver le bouton pendant l'envoi
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+    
+    // Envoyer l'email via EmailJS
+    emailjs.sendForm(
+        'service_jq5ib7h',    // Remplacez par votre Service ID
+        'template_m3asgjl',   // Remplacez par votre Template ID
+        contactForm
+    )
+    .then(() => {
+        // Succès
+        alert('Merci! Votre message a été envoyé avec succès. Je vous répondrai bientôt.');
+        contactForm.reset();
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le Message';
+    })
+    .catch((error) => {
+        // Erreur
+        console.error('Erreur:', error);
+        alert('Désolé, une erreur s\'est produite. Veuillez réessayer ou m\'envoyer un email directement.');
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le Message';
+    });
+});
+
+// Ajouter la classe active à la navigation lors du défilement
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
+        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLink?.classList.add('active');
+        } else {
+            navLink?.classList.remove('active');
+        }
+    });
+});
+
+// Effet de frappe pour le sous-titre hero (amélioration optionnelle)
+const subtitle = document.querySelector('.hero-subtitle');
+const text = subtitle.textContent;
+subtitle.textContent = '';
+
+let i = 0;
+const typeWriter = () => {
+    if (i < text.length) {
+        subtitle.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+    }
+};
+
+// Démarrer l'effet de frappe au chargement de la page
+window.addEventListener('load', () => {
+    setTimeout(typeWriter, 500);
+});
