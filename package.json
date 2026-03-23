@@ -1,0 +1,25 @@
+{
+  "name": "abbas-fakih39.github.io",
+  "version": "1.0.0",
+  "description": "Portfolio personnel migré vers Astro",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abbas-fakih39/abbas-fakih39.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abbas-fakih39/abbas-fakih39.github.io/issues"
+  },
+  "homepage": "https://github.com/abbas-fakih39/abbas-fakih39.github.io#readme",
+  "dependencies": {
+    "astro": "^6.0.8"
+  }
+}
