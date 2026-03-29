@@ -1,333 +1,529 @@
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abbas Zein Fakih - Portfolio Développeur Web</title>
-    <link rel="stylesheet" href="/style.css?v=20260323-2">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-</head>
-<body>
-    <!-- En-tête de navigation -->
-    <header id="header">
-        <nav class="navbar">
-            <div class="logo">
-                <h2>Abbas Zein Fakih<span class="accent">.</span></h2>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Accueil</a></li>
-                <li><a href="#about" class="nav-link">À Propos</a></li>
-                <li><a href="#skills" class="nav-link">Compétences</a></li>
-                <li><a href="#projects" class="nav-link">Projets</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Section Hero/Accueil -->
-    <section id="home" class="hero">
-        <div class="hero-orb orb-one" aria-hidden="true"></div>
-        <div class="hero-orb orb-two" aria-hidden="true"></div>
-        <div class="hero-grid" aria-hidden="true"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <span class="greeting">Bonjour, je suis</span>
-                <h1 class="hero-name">Abbas Zein Fakih</h1>
-                <p class="hero-subtitle">Développeur Full-Stack</p>
-                <div class="hero-meta">
-                    <span>Disponible en alternance 2026-2027</span>
-                    <span>Lille</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Abbas Zein Fakih - Portfolio Développeur Web</title>
+        <link rel="stylesheet" href="/style.css?v=20260323-2" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <!-- EmailJS SDK -->
+        <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        ></script>
+    </head>
+    <body>
+        <!-- En-tête de navigation -->
+        <header id="header">
+            <nav class="navbar">
+                <div class="logo">
+                    <h2>Abbas Zein Fakih<span class="accent">.</span></h2>
                 </div>
-                <p class="hero-description">
-                    Étudiant en Bac+3 développement web à MyDigitalSchool Lille, je recherche une alternance full-stack pour l'année 2026-2027.
-                    Je conçois des interfaces modernes, je développe des API robustes, et je livre des fonctionnalités utiles en équipe.
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="nav-link">Accueil</a></li>
+                    <li><a href="#about" class="nav-link">À Propos</a></li>
+                    <li><a href="#skills" class="nav-link">Compétences</a></li>
+                    <li><a href="#projects" class="nav-link">Projets</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Section Hero/Accueil -->
+        <section id="home" class="hero">
+            <div class="hero-orb orb-one" aria-hidden="true"></div>
+            <div class="hero-orb orb-two" aria-hidden="true"></div>
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="greeting">Bonjour, je suis</span>
+                    <h1 class="hero-name">Abbas Zein Fakih</h1>
+                    <p class="hero-subtitle">Développeur Full-Stack</p>
+                    <div class="hero-meta">
+                        <span>Disponible en alternance 2026-2027</span>
+                        <span>Lille</span>
+                    </div>
+                    <p class="hero-description">
+                        Étudiant en Bac+3 développement web à MyDigitalSchool
+                        Lille, je recherche une alternance full-stack pour
+                        l'année 2026-2027. Je conçois des interfaces modernes,
+                        je développe des API robustes, et je livre des
+                        fonctionnalités utiles en équipe.
+                    </p>
+                    <div class="hero-buttons">
+                        <a
+                            href="/cv/mon-cv.pdf"
+                            download
+                            class="btn btn-primary"
+                        >
+                            <i class="fas fa-download"></i> Télécharger CV
+                        </a>
+                        <a href="#projects" class="btn btn-secondary">
+                            <i class="fas fa-folder-open"></i> Mes projets
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/"
+                            target="_blank"
+                            class="btn btn-secondary"
+                        >
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a
+                            href="https://github.com/abbas-fakih39"
+                            target="_blank"
+                            class="btn btn-secondary"
+                        >
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <img src="/images/votre-photo.jpg" alt="Votre Nom" />
+                        <div class="image-border"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Défiler vers le bas</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Section À Propos -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">À Propos de Moi</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="about-block">
+                            <h3 class="about-block-title">
+                                Ce que je recherche
+                            </h3>
+                            <p>
+                                Actuellement en 3eme année de développement web
+                                à Lille, je prépare mon Master / MBA Full-Stack
+                                pour la rentrée de septembre 2026. Je cherche
+                                une alternance d'un an pour intégrer une équipe
+                                où l'on construit de vrais produits. J'aime
+                                coder, résoudre des problèmes concrets et j'ai
+                                hâte de mettre mon énergie au service de vos
+                                projets.
+                            </p>
+                            <h3 class="about-block-title">Côté technique</h3>
+                            <p>
+                                Mon terrain de jeu favori est la stack MERN
+                                (React, Node.js). Je développe des interfaces
+                                fluides et des API sécurisées, en m'appuyant sur
+                                des outils comme Next.js, Laravel et Docker.
+                                Polyvalent et curieux, je m'adapte vite aux
+                                nouvelles technos et j'accorde une grande
+                                importance à la qualité du code et au travail en
+                                équipe.
+                            </p>
+                        </div>
+                        <div class="about-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Localisation : Lille, France</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span
+                                    >Formation : Étudiant en Développement Web
+                                    (bac+3) chez MyDigitalSchool Lille</span
+                                >
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <span
+                                    >Email : <a
+                                        href="mailto:abbassfakih54321@outlook.com"
+                                        class="contact-link"
+                                        >abbassfakih54321@outlook.com</a
+                                    ></span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Compétences -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Compétences Clés</h2>
+                <p class="section-subtitle">
+                    Une stack ciblée pour livrer des produits web concrets
                 </p>
-                <div class="hero-buttons">
+
+                <div class="skills-layout">
+                    <article class="skills-focus reveal-card">
+                        <h3>Ce que je peux faire efficacement</h3>
+                        <ul>
+                            <li>
+                                Concevoir et développer des interfaces web
+                                modernes et responsives.
+                            </li>
+                            <li>
+                                Créer des API sécurisées (authentification,
+                                rôles, validation).
+                            </li>
+                            <li>
+                                Connecter front-end et back-end sur des projets
+                                full-stack.
+                            </li>
+                            <li>
+                                Collaborer en équipe avec GitHub, Postman et
+                                outils Agile.
+                            </li>
+                        </ul>
+                    </article>
+
+                    <div class="skills-groups">
+                        <article class="skill-group reveal-card">
+                            <h3>Stack principale</h3>
+                            <div class="skill-chips">
+                                <span>JavaScript</span>
+                                <span>React.js</span>
+                                <span>Node.js</span>
+                                <span>Express.js</span>
+                                <span>MongoDB</span>
+                                <span>REST API</span>
+                            </div>
+                        </article>
+
+                        <article class="skill-group reveal-card">
+                            <h3>Compétences complémentaires</h3>
+                            <div class="skill-chips">
+                                <span>Astro</span>
+                                <span>WordPress</span>
+                                <span>PHP / Laravel</span>
+                                <span>SQL</span>
+                                <span>NestJS</span>
+                                <span>Tailwind CSS</span>
+                                <span>Docker</span>
+                                <span>Linux / Bash</span>
+                            </div>
+                        </article>
+
+                        <article class="skill-group reveal-card">
+                            <h3>Méthode de travail</h3>
+                            <div class="skill-chips">
+                                <span>Git & GitHub</span>
+                                <span>Postman</span>
+                                <span>Figma</span>
+                                <span>Travail en équipe</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Projets -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Mes Projets</h2>
+                <p class="section-subtitle">
+                    Travaux récents dont je suis fier
+                </p>
+
+                <div class="projects-grid">
+                    <!-- Projet 1 -->
+                    <div class="project-card reveal-card">
+                        <div class="project-image">
+                            <img src="/images/projet1.jpg" alt="Projet 1" />
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a
+                                        href="https://github.com/twoofusllc-developement-team/productdeliveryplatform-server/tree/abbas-internship"
+                                        target="_blank"
+                                        class="project-link"
+                                    >
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Site E-Commerce</h3>
+                            <p>
+                                Une plateforme e-commerce entièrement responsive
+                                avec fonctionnalité de panier, login, sign up...
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Express js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 4 -->
+                    <div class="project-card reveal-card">
+                        <div class="project-image">
+                            <img src="/images/projet2.png" alt="Projet 4" />
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a
+                                        href="https://github.com/abbas-fakih39/kids-project.git"
+                                        target="_blank"
+                                        class="project-link"
+                                    >
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Application Mobile</h3>
+                            <p>
+                                Application mobile de location d'équipements
+                                bébé pour touristes.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">NestJS</span>
+                                <span class="tech-tag">NuxtJS</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Prisma</span>
+                                <span class="tech-tag">TailwindCSS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 3 -->
+                    <div class="project-card reveal-card">
+                        <div class="project-image">
+                            <img src="/images/projet3.jpg" alt="Projet 3" />
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a
+                                        href="https://github.com/abbas-fakih39/spotify-redesign"
+                                        target="_blank"
+                                        class="project-link"
+                                    >
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Spotify Redesign</h3>
+                            <p>
+                                Refonte de l’interface et des fonctionnalités
+                                principales de Spotify...
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">PHP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 2 -->
+                    <div class="project-card reveal-card">
+                        <div class="project-image">
+                            <img src="/images/projet4.png" alt="Projet 2" />
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a
+                                        href="https://www.felikso.org/"
+                                        target="_blank"
+                                        class="project-link"
+                                    >
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Site Felikso</h3>
+                            <p>
+                                Site web WordPress pour Felikso, association
+                                lilloise
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Wordpress</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 5 -->
+                    <div class="project-card reveal-card">
+                        <div class="project-image">
+                            <img
+                                src="/images/projet5.jpg"
+                                alt="jeu tower defense"
+                            />
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a
+                                        href="https://github.com/ArthurFtn/Tower-defense"
+                                        target="_blank"
+                                        class="project-link"
+                                    >
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Jeu Tower Defense</h3>
+                            <p>
+                                Jeu de stratégie Tower Defense développé avec
+                                Unity et C#, incluant la gestion de vagues
+                                d'ennemis et l'amélioration de tours.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Unity</span>
+                                <span class="tech-tag">C#</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projects-cta">
+                    <a
+                        href="https://github.com/abbas-fakih39"
+                        target="_blank"
+                        class="btn btn-primary"
+                    >
+                        <i class="fab fa-github"></i> Voir tous mes projets sur GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contactez-Moi</h2>
+                <p class="section-subtitle"></p>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a
+                                    href="mailto:abbassfakih54321@outlook.com"
+                                    class="contact-link"
+                                    >abbassfakih54321@outlook.com</a
+                                >
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Téléphone</h4>
+                                <a href="tel:+33769518192" class="contact-link"
+                                    >+33 07 69 51 81 92</a
+                                >
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Localisation</h4>
+                                <p>Lille, France</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a
+                                href="https://github.com/abbas-fakih39"
+                                target="_blank"><i class="fab fa-github"></i></a
+                            >
+                            <a
+                                href="https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/"
+                                target="_blank"
+                                ><i class="fab fa-linkedin"></i></a
+                            >
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required />
+                            <label for="name">Votre Nom</label>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                            />
+                            <label for="email">Votre Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                required
+                            />
+                            <label for="subject">Sujet</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        <div class="form-button-wrapper">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Envoyer le Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Liens rapides en bas de page -->
+        <footer class="mini-footer">
+            <div class="container">
+                <div class="footer-links">
                     <a href="/cv/mon-cv.pdf" download class="btn btn-primary">
-                        <i class="fas fa-download"></i> Télécharger CV
+                        <i class="fas fa-download"></i> CV
                     </a>
-                    <a href="https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/" target="_blank" class="btn btn-secondary">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/abbas-fakih39" target="_blank" class="btn btn-secondary">
+                    <a
+                        href="https://github.com/abbas-fakih39"
+                        target="_blank"
+                        class="btn btn-secondary"
+                    >
                         <i class="fab fa-github"></i> GitHub
                     </a>
+                    <a
+                        href="https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/"
+                        target="_blank"
+                        class="btn btn-secondary"
+                    >
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <img src="/images/votre-photo.jpg" alt="Votre Nom">
-                    <div class="image-border"></div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Défiler vers le bas</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+        </footer>
 
-    <!-- Section À Propos -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">À Propos de Moi</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Actuellement étudiant en troisième année de développement web, je suis à la recherche d'une alternance d'un an pour mettre en pratique ma passion pour la création de solutions numériques innovantes. Mon objectif est d'intégrer une équipe dynamique où je pourrai appliquer et approfondir mes compétences techniques.
-                    </p>
-                    <p>
-                        Mon expérience la plus significative est mon stage chez TECHLARIOUS , où j'ai participé au développement d'une plateforme e-commerce en utilisant la stack MERN (MongoDB, Express.js, React.js, Node.js). J'ai également eu l'opportunité de mettre mes compétences au service du secteur associatif en créant un site vitrine sous WordPress pour l'association lilloise Felikso, démontrant ma capacité à m'adapter à différents projets et technologies.
-                    </p>
-                    <div class="about-info">
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Localisation : Lille, France</span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Formation : Étudiant en Développement Web (bac+3) chez MyDigitalSchool Lille</span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>Email : <a href="mailto:abbassfakih54321@outlook.com" class="contact-link">abbassfakih54321@outlook.com</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Bouton Retour en haut -->
+        <button id="back-to-top" class="back-to-top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
 
-    <!-- Section Compétences -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Compétences Clés</h2>
-            <p class="section-subtitle">Une stack ciblée pour livrer des produits web concrets</p>
-
-            <div class="skills-layout">
-                <article class="skills-focus reveal-card">
-                    <h3>Ce que je peux faire efficacement</h3>
-                    <ul>
-                        <li>Concevoir et développer des interfaces web modernes et responsives.</li>
-                        <li>Créer des API sécurisées (authentification, rôles, validation).</li>
-                        <li>Connecter front-end et back-end sur des projets full-stack.</li>
-                        <li>Collaborer en équipe avec GitHub, Postman et outils Agile.</li>
-                    </ul>
-                </article>
-
-                <div class="skills-groups">
-                    <article class="skill-group reveal-card">
-                        <h3>Stack principale</h3>
-                        <div class="skill-chips">
-                            <span>JavaScript</span>
-                            <span>React.js</span>
-                            <span>Node.js</span>
-                            <span>Express.js</span>
-                            <span>MongoDB</span>
-                            <span>REST API</span>
-                        </div>
-                    </article>
-
-                    <article class="skill-group reveal-card">
-                        <h3>Compétences complémentaires</h3>
-                        <div class="skill-chips">
-                            <span>Astro</span>
-                            <span>WordPress</span>
-                            <span>PHP / Laravel</span>
-                            <span>SQL</span>
-                            <span>NestJS</span>
-                            <span>Tailwind CSS</span>
-                            <span>Docker</span>
-                            <span>Linux / Bash</span>
-                        </div>
-                    </article>
-
-                    <article class="skill-group reveal-card">
-                        <h3>Méthode de travail</h3>
-                        <div class="skill-chips">
-                            <span>Git & GitHub</span>
-                            <span>Postman</span>
-                            <span>Figma</span>
-                            <span>Travail en équipe</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Projets -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Mes Projets</h2>
-            <p class="section-subtitle">Travaux récents dont je suis fier</p>
-            
-            <div class="projects-grid">
-                <!-- Projet 1 -->
-                <div class="project-card reveal-card">
-                    <div class="project-image">
-                        <img src="/images/projet1.jpg" alt="Projet 1">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/twoofusllc-developement-team/productdeliveryplatform-server/tree/abbas-internship" target="_blank" class="project-link">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Site E-Commerce</h3>
-                        <p>Une plateforme e-commerce entièrement responsive avec fonctionnalité de panier, 
-                        login, sign up...</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Express js</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projet 2 -->
-                <div class="project-card reveal-card">
-                    <div class="project-image">
-                        <img src="/images/projet2.png" alt="Projet 2">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://www.felikso.org/" target="_blank" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Site Felikso</h3>
-                        <p> Site web WordPress pour Felikso, association lilloise</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Wordpress</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projet 3 -->
-                <div class="project-card reveal-card">
-                    <div class="project-image">
-                        <img src="/images/projet3.jpg" alt="Projet 3">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/abbas-fakih39/spotify-redesign" target="_blank" class="project-link">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Spotify Redesign</h3>
-                        <p>Refonte de l’interface et des fonctionnalités principales de Spotify...</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">PHP</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ajoutez plus de projets selon vos besoins -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Contact -->
-    <section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title">Contactez-Moi</h2>
-        <p class="section-subtitle"></p>
-        
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4>Email</h4>
-                        <a href="mailto:abbassfakih54321@outlook.com" class="contact-link">abbassfakih54321@outlook.com</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <h4>Téléphone</h4>
-                        <p>+33 07 69 51 81 92</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Localisation</h4>
-                        <p>Lille, France</p>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/abbas-fakih39" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-
-            <form class="contact-form" id="contact-form">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" required>
-                    <label for="name">Votre Nom</label>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" required>
-                    <label for="email">Votre Email</label>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="subject" name="subject" required>
-                    <label for="subject">Sujet</label>
-                </div>
-                <div class="form-group">
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                    <label for="message">Message</label>
-                </div>
-                <div class="form-button-wrapper">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Envoyer le Message
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-
-    <!-- Liens rapides en bas de page -->
-    <footer class="mini-footer">
-        <div class="container">
-            <div class="footer-links">
-                <a href="/cv/mon-cv.pdf" download class="btn btn-primary">
-                    <i class="fas fa-download"></i> CV
-                </a>
-                <a href="https://github.com/abbas-fakih39" target="_blank" class="btn btn-secondary">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/" target="_blank" class="btn btn-secondary">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bouton Retour en haut -->
-    <button id="back-to-top" class="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <script is:inline src="/script.js?v=20260323-2"></script>
-</body>
+        <script is:inline src="/script.js?v=20260323-2"></script>
+    </body>
 </html>
-

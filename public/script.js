@@ -3,6 +3,28 @@
     emailjs.init("bLECYSz1NM7GcjAev"); // Remplacez par votre Public Key d'EmailJS
 })();
 
+// Basculement du menu mobile
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const body = document.body;
+
+const closeMobileMenu = () => {
+    navMenu.classList.remove('active');
+    hamburger.classList.remove('active');
+    body.classList.remove('menu-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+};
+
+const openMobileMenu = () => {
+    navMenu.classList.add('active');
+    hamburger.classList.add('active');
+    body.classList.add('menu-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+};
+
+hamburger.setAttribute('aria-label', 'Ouvrir le menu de navigation');
+hamburger.setAttribute('aria-expanded', 'false');
+
 // Défilement fluide pour les liens de navigation
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -16,17 +38,37 @@ document.querySelectorAll('.nav-link').forEach(link => {
         });
 
         // Fermer le menu mobile s'il est ouvert
-        navMenu.classList.remove('active');
+        closeMobileMenu();
     });
 });
 
-// Basculement du menu mobile
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-
 hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
+    if (navMenu.classList.contains('active')) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+});
+
+document.addEventListener('click', (event) => {
+    const clickedOutsideMenu = !navMenu.contains(event.target);
+    const clickedOutsideButton = !hamburger.contains(event.target);
+
+    if (navMenu.classList.contains('active') && clickedOutsideMenu && clickedOutsideButton) {
+        closeMobileMenu();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+        closeMobileMenu();
+    }
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+        closeMobileMenu();
+    }
 });
 
 // En-tête collant lors du défilement
