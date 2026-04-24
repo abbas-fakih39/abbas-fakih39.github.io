@@ -1,0 +1,83 @@
+---
+import HeroAnimation from './ui/HeroAnimation';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<section
+  id="home"
+  class="relative min-h-screen flex items-center pt-20"
+  style="border-bottom: 1px solid var(--border);"
+>
+  <div class="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+    <div class="py-12 lg:py-28">
+
+      <!-- Mobile photo — shown only below lg, above the name -->
+      <div class="lg:hidden mb-8">
+        <div class="relative w-48 h-60 sm:w-56 sm:h-72">
+          <!-- Corner accents -->
+          <span
+            class="absolute top-0 left-0 w-7 h-7 border-t-2 border-l-2 z-10"
+            style="border-color: var(--accent); margin: -1px;"
+          ></span>
+          <span
+            class="absolute bottom-0 right-0 w-7 h-7 border-b-2 border-r-2 z-10"
+            style="border-color: var(--accent); margin: -1px;"
+          ></span>
+          <div style="width:100%; height:100%; overflow:hidden; border: 1px solid var(--border);">
+            <img
+              src="/images/votre-photo.jpg"
+              alt="Abbas Zein Fakih"
+              style="width:100%; height:100%; object-fit:cover; object-position:top; filter:grayscale(20%);"
+              onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop'; this.onerror=null;"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop: side-by-side layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-center">
+
+        <!-- Animated Text Content (React Island) -->
+        <div class="min-w-0 w-full">
+          <HeroAnimation lang={lang} client:load />
+        </div>
+
+        <!-- Desktop photo — hidden on mobile -->
+        <div class="hidden lg:block relative flex-shrink-0">
+          <div
+            class="absolute -top-10 -left-10 select-none pointer-events-none"
+            style="font-family:'Syne',sans-serif; font-size:7rem; font-weight:800; color:var(--accent); opacity:0.1; line-height:1;"
+          >
+            01
+          </div>
+
+          <div class="relative" style="border:1px solid var(--border);">
+            <span class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 z-10" style="border-color:var(--accent); margin:-1px;"></span>
+            <span class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 z-10" style="border-color:var(--accent); margin:-1px;"></span>
+            <div style="aspect-ratio:3/4; overflow:hidden;">
+              <img
+                src="/images/votre-photo.jpg"
+                alt="Abbas Zein Fakih"
+                style="width:100%; height:100%; object-fit:cover; filter:grayscale(20%); transition:filter 0.5s ease, transform 0.7s ease; display:block;"
+                onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'; this.onerror=null;"
+                onmouseover="this.style.filter='grayscale(0%)'; this.style.transform='scale(1.03)';"
+                onmouseout="this.style.filter='grayscale(20%)'; this.style.transform='scale(1)';"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center"
+    style="opacity:0.35;"
+  >
+    <div class="animate-pulse" style="width:1px; height:50px; background:linear-gradient(to bottom, transparent, var(--accent));"></div>
+  </div>
+</section>

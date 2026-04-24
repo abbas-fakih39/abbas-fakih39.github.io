@@ -1,0 +1,131 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+
+      <!-- Wordmark -->
+      <a
+        href={`/${lang}`}
+        class="font-display font-bold text-lg tracking-tight text-white hover:text-accent transition-colors duration-300"
+        style="font-family: 'Syne', sans-serif;"
+      >
+        AZF<span style="color: var(--accent)">.</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-10">
+        {[
+          ['nav.home', '#home'],
+          ['nav.about', '#about'],
+          ['nav.skills', '#skills'],
+          ['nav.projects', '#projects'],
+          ['nav.contact', '#contact'],
+        ].map(([key, href]) => (
+          <a
+            href={`/${lang}${href}`}
+            class="text-sm tracking-wide text-muted hover:text-white transition-colors duration-300 nav-link"
+            style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted);"
+          >
+            {t(key as any)}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right side -->
+      <div class="flex items-center gap-4">
+        <LanguageSwitcher />
+        <!-- Mobile burger -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden flex flex-col gap-1.5 p-2"
+          aria-label="Toggle menu"
+        >
+          <span class="burger-bar w-6 h-px bg-white transition-all duration-300"></span>
+          <span class="burger-bar w-4 h-px bg-white transition-all duration-300 ml-auto"></span>
+          <span class="burger-bar w-6 h-px bg-white transition-all duration-300"></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Thin bottom border that appears on scroll -->
+  <div id="header-border" class="absolute bottom-0 left-0 right-0 h-px bg-border opacity-0 transition-opacity duration-500"></div>
+</header>
+
+<!-- Mobile Menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 flex flex-col justify-center px-8 transition-all duration-500 opacity-0 pointer-events-none"
+  style="background: var(--bg);"
+>
+  <nav class="flex flex-col gap-8">
+    {[
+      ['nav.home', '#home'],
+      ['nav.about', '#about'],
+      ['nav.skills', '#skills'],
+      ['nav.projects', '#projects'],
+      ['nav.contact', '#contact'],
+    ].map(([key, href]) => (
+      <a
+        href={`/${lang}${href}`}
+        class="mobile-nav-link text-4xl font-display font-bold text-white hover:text-accent transition-colors duration-200"
+        style="font-family: 'Syne', sans-serif;"
+      >
+        {t(key as any)}
+      </a>
+    ))}
+  </nav>
+</div>
+
+<script is:inline>
+  const header = document.getElementById('site-header');
+  const border = document.getElementById('header-border');
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+
+  // Scroll behavior
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      header.style.backdropFilter = 'blur(20px)';
+      header.style.backgroundColor = 'rgba(10,10,10,0.85)';
+      border.style.opacity = '1';
+    } else {
+      header.style.backdropFilter = 'none';
+      header.style.backgroundColor = 'transparent';
+      border.style.opacity = '0';
+    }
+  });
+
+  // Mobile menu
+  mobileBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    if (menuOpen) {
+      mobileMenu.style.opacity = '1';
+      mobileMenu.style.pointerEvents = 'all';
+    } else {
+      mobileMenu.style.opacity = '0';
+      mobileMenu.style.pointerEvents = 'none';
+    }
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.style.opacity = '0';
+      mobileMenu.style.pointerEvents = 'none';
+    });
+  });
+</script>

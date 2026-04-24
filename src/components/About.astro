@@ -1,0 +1,82 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const blocks = lang === 'fr'
+  ? [
+      { title: 'Ce que je recherche', icon: 'fa-bullseye', body: "Actuellement en 3ème année de développement web à Lille, je prépare mon Master / MBA Full-Stack pour la rentrée de septembre 2026. Je cherche une alternance d'un an pour intégrer une équipe où l'on construit de vrais produits. J'aime coder, résoudre des problèmes concrets et j'ai hâte de mettre mon énergie au service de vos projets." },
+      { title: 'Côté technique', icon: 'fa-code', body: "Mon terrain de jeu favori est la stack MERN (React, Node.js). Je développe des interfaces fluides et des API sécurisées, en m'appuyant sur des outils comme Next.js, Laravel et Docker. Polyvalent et curieux, je m'adapte vite aux nouvelles technos et j'accorde une grande importance à la qualité du code et au travail en équipe." },
+    ]
+  : [
+      { title: 'What I am looking for', icon: 'fa-bullseye', body: "Currently in my 3rd year of web development in Lille, I am preparing for my Full-Stack Master/MBA starting in September 2026. I am looking for a one-year work-study program to join a team building real products. I love coding, solving concrete problems, and I can't wait to bring my energy to your projects." },
+      { title: 'Technical side', icon: 'fa-code', body: "My favorite playground is the MERN stack (React, Node.js). I develop fluid interfaces and secure APIs, relying on tools like Next.js, Laravel, and Docker. Versatile and curious, I adapt quickly to new technologies and place great importance on code quality and teamwork." },
+    ];
+
+const stats = lang === 'fr'
+  ? [{ value: '3', label: 'Années de formation' }, { value: '5+', label: 'Projets livrés' }, { value: '10+', label: 'Technologies' }]
+  : [{ value: '3', label: 'Years training' }, { value: '5+', label: 'Projects' }, { value: '10+', label: 'Technologies' }];
+---
+
+<section id="about" class="py-20 lg:py-36" style="border-bottom: 1px solid var(--border);">
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+
+    <!-- Section label -->
+    <div class="flex items-center gap-4 sm:gap-6 mb-12 lg:mb-16 reveal">
+      <span class="section-number">02</span>
+      <div class="h-px w-8 sm:w-12" style="background: var(--border);"></div>
+      <h2 class="font-display font-bold" style="font-family:'Syne',sans-serif; font-size:clamp(1.75rem,5vw,4rem); line-height:1; letter-spacing:-0.02em;">
+        {lang === 'fr' ? 'À Propos' : 'About'}
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-20">
+
+      <!-- Text blocks -->
+      <div class="space-y-12">
+        {blocks.map((block, i) => (
+          <div class={`reveal reveal-delay-${i + 1}`}>
+            <div class="flex items-center gap-3 mb-5">
+              <i class={`fa ${block.icon} text-xs`} style="color:var(--accent);"></i>
+              <h3 style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted);">{block.title}</h3>
+            </div>
+            <p style="font-family:'Lora',serif; font-size:clamp(1rem,1.8vw,1.2rem); line-height:1.85; color:#E0E0E0; font-weight:400;">{block.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Right column -->
+      <div class="space-y-6">
+        <!-- Stats grid -->
+        <div class="grid grid-cols-3 reveal reveal-delay-2" style="border:1px solid var(--border);">
+          {stats.map((stat, i) => (
+            <div class="flex flex-col items-center justify-center py-6 px-2 text-center" style={`border-right: ${i < 2 ? '1px solid var(--border)' : 'none'};`}>
+              <span class="font-display font-bold" style="font-family:'Syne',sans-serif; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1; color:var(--accent);">{stat.value}</span>
+              <span class="mt-2 leading-tight" style="font-family:'JetBrains Mono',monospace; font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Info list -->
+        <div class="reveal reveal-delay-3 space-y-5 p-6" style="border:1px solid var(--border);">
+          {[
+            { icon: 'fa-map-marker-alt', label: lang === 'fr' ? 'Localisation' : 'Location', value: 'Lille, France' },
+            { icon: 'fa-graduation-cap', label: lang === 'fr' ? 'Formation' : 'Education', value: 'Bac+3 — MyDigitalSchool' },
+            { icon: 'fa-envelope', label: 'Email', value: 'abbassfakih54321@outlook.com', href: 'mailto:abbassfakih54321@outlook.com' },
+          ].map((item) => (
+            <div class="flex items-start gap-4">
+              <i class={`fa ${item.icon} text-xs mt-1`} style="color:var(--accent); flex-shrink:0;"></i>
+              <div class="min-w-0">
+                <p style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.2rem;">{item.label}</p>
+                {item.href
+                  ? <a href={item.href} class="text-sm hover:text-white transition-colors break-all" style="color:#C8C8C8;">{item.value}</a>
+                  : <p class="text-sm" style="color:#C8C8C8;">{item.value}</p>
+                }
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

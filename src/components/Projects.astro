@@ -1,0 +1,90 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+
+const projects = [
+  { num:'01', title:'E-Commerce Platform', desc: lang==='fr' ? "Plateforme e-commerce responsive avec panier, authentification et gestion des commandes." : "Responsive e-commerce platform with cart, auth and order management.", tech:['React.js','Node.js','MongoDB','Express.js'], link:'https://github.com/twoofusllc-developement-team/productdeliveryplatform-server/tree/abbas-internship', linkIcon:'fa-github', img:'/images/projet1.jpg' },
+  { num:'02', title:'Kits & Kids Mobile App', desc: lang==='fr' ? "Application mobile de location d'équipements bébé pour touristes avec calendrier et réservation." : "Baby equipment rental mobile app for tourists with calendar and booking system.", tech:['NestJS','NuxtJS','PostgreSQL','Prisma'], link:'https://github.com/abbas-fakih39/kids-project.git', linkIcon:'fa-github', img:'/images/projet2.png' },
+  { num:'03', title:'Spotify Redesign', desc: lang==='fr' ? "Refonte complète de l'interface Spotify avec de nouvelles fonctionnalités et une meilleure UX." : "Full redesign of Spotify's interface with new features and improved UX.", tech:['Laravel','PHP'], link:'https://github.com/abbas-fakih39/spotify-redesign', linkIcon:'fa-github', img:'/images/projet3.jpg' },
+  { num:'04', title:'Felikso', desc: lang==='fr' ? "Site web WordPress pour l'association lilloise Felikso — design, intégration et déploiement." : "WordPress website for the Lille association Felikso — design, integration and deployment.", tech:['WordPress'], link:'https://www.felikso.org/', linkIcon:'fa-external-link-alt', img:'/images/projet4.png' },
+  { num:'05', title:'Tower Defense Game', desc: lang==='fr' ? "Jeu de stratégie Tower Defense avec Unity et C# — gestion de vagues et d'améliorations." : "Tower Defense strategy game with Unity and C# — waves and upgrades system.", tech:['Unity','C#'], link:'https://github.com/ArthurFtn/Tower-defense', linkIcon:'fa-github', img:'/images/projet5.jpg' },
+];
+---
+
+<section id="projects" class="py-20 lg:py-36" style="border-bottom:1px solid var(--border);">
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+
+    <!-- Section label -->
+    <div class="flex items-center gap-4 sm:gap-6 mb-12 lg:mb-16 reveal">
+      <span class="section-number">04</span>
+      <div class="h-px w-8 sm:w-12" style="background:var(--border);"></div>
+      <h2 class="font-display font-bold" style="font-family:'Syne',sans-serif; font-size:clamp(1.75rem,5vw,4rem); line-height:1; letter-spacing:-0.02em;">
+        {lang === 'fr' ? 'Projets' : 'Projects'}
+      </h2>
+    </div>
+
+    <!-- Project rows -->
+    <div style="border-top:1px solid var(--border);">
+      {projects.map((project, i) => (
+        <div class={`project-row reveal reveal-delay-${Math.min(i+1,4)}`} style="border-bottom:1px solid var(--border);">
+          <a href={project.link} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between gap-4 sm:gap-6 py-6 sm:py-8 w-full" style="text-decoration:none;">
+
+            <!-- Left: Number + Title + desc -->
+            <div class="flex items-baseline gap-4 sm:gap-8 min-w-0 flex-1">
+              <span class="shrink-0 hidden sm:block" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--muted); letter-spacing:0.1em;">
+                {project.num}
+              </span>
+              <div class="min-w-0">
+                <h3 class="font-display font-bold transition-colors duration-300 group-hover:text-accent" style="font-family:'Syne',sans-serif; font-size:clamp(1.1rem,3.5vw,2.25rem); letter-spacing:-0.02em; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                  {project.title}
+                </h3>
+                <!-- Description: visible on sm+, hidden on xs -->
+                <p class="mt-1 hidden sm:block text-sm" style="color:var(--muted); max-width:55ch; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                  {project.desc}
+                </p>
+                <!-- Tech tags on mobile only -->
+                <div class="flex flex-wrap gap-1.5 mt-2 sm:hidden">
+                  {project.tech.map((t) => (
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--muted); border:1px solid var(--border); padding:0.15rem 0.5rem;">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Right -->
+            <div class="shrink-0 flex items-center gap-3 sm:gap-6 lg:gap-8">
+              <!-- Tech tags — desktop only -->
+              <div class="hidden md:flex flex-wrap gap-2 justify-end" style="max-width:200px;">
+                {project.tech.map((t) => (
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--muted); border:1px solid var(--border); padding:0.2rem 0.5rem; white-space:nowrap;">{t}</span>
+                ))}
+              </div>
+
+              <!-- Hover image preview — lg only -->
+              <div class="project-img hidden lg:block" style="width:100px; height:68px; overflow:hidden; border:1px solid var(--border);">
+                <img src={project.img} alt={project.title} style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+              </div>
+
+              <!-- Arrow -->
+              <div class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-accent" style="border:1px solid var(--border);">
+                <i class={`fa ${project.linkIcon} text-xs`} style="color:var(--muted);"></i>
+              </div>
+            </div>
+
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- GitHub CTA -->
+    <div class="mt-10 lg:mt-14 reveal">
+      <a href="https://github.com/abbas-fakih39" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 group" style="text-decoration:none;">
+        <span class="group-hover:text-white transition-colors duration-300" style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">
+          {lang === 'fr' ? 'Voir tous mes projets sur GitHub' : 'See all projects on GitHub'}
+        </span>
+        <div class="h-px transition-all duration-500 group-hover:w-16 w-8" style="background:var(--accent);"></div>
+      </a>
+    </div>
+
+  </div>
+</section>
