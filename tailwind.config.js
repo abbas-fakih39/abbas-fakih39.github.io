@@ -3,57 +3,38 @@ export default {
   content: [
     './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
   ],
-  darkMode: "class",
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        accent: '#7C3AED',
-        'accent-light': '#9F5FFF',
-        'accent-dim': '#3D1A7A',
-        surface: '#111111',
-        border: '#1F1F1F',
-        muted: '#888888',
+        bg: {
+          DEFAULT: '#0A0A0A',
+          surface: '#111111',
+        },
+        fg: {
+          DEFAULT: '#F2F2F2',
+          muted: '#666666',
+          dim: '#2A2A2A',
+        },
+        accent: {
+          DEFAULT: '#E2FF00',
+        },
       },
       fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Syne', 'Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       fontSize: {
-        'fluid-xl': 'clamp(3rem, 8vw, 8rem)',
-        'fluid-lg': 'clamp(2rem, 5vw, 5rem)',
-        'fluid-md': 'clamp(1.5rem, 3vw, 2.5rem)',
+        'fluid-hero':    ['clamp(4rem, 15vw, 14rem)',  { lineHeight: '0.88' }],
+        'fluid-display': ['clamp(2.5rem, 7vw, 7rem)',   { lineHeight: '0.95' }],
+        'fluid-xl':      ['clamp(1.5rem, 3.5vw, 3.5rem)', { lineHeight: '1' }],
+        'fluid-sm':      ['clamp(0.8rem, 1.2vw, 0.9rem)', { lineHeight: '1.7' }],
       },
-      animation: {
-        'marquee': 'marquee 30s linear infinite',
-        'marquee2': 'marquee2 30s linear infinite',
-        'blink': 'blink 1s step-end infinite',
-        'fadeUp': 'fadeUp 0.6s ease forwards',
-        'drawLine': 'drawLine 1s ease forwards',
-      },
-      keyframes: {
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
-        },
-        marquee2: {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(0%)' },
-        },
-        blink: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0' },
-        },
-        fadeUp: {
-          from: { opacity: '0', transform: 'translateY(40px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
-        drawLine: {
-          from: { 'stroke-dashoffset': '1000' },
-          to: { 'stroke-dashoffset': '0' },
-        },
+      maxWidth: {
+        content: '1400px',
       },
     },
   },
   plugins: [],
-}
+};

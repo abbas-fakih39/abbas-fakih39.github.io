@@ -1,83 +1,77 @@
 ---
-import HeroAnimation from './ui/HeroAnimation';
-import { getLangFromUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section
-  id="home"
-  class="relative min-h-screen flex items-center pt-20"
-  style="border-bottom: 1px solid var(--border);"
->
-  <div class="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-    <div class="py-12 lg:py-28">
+<section id="home" class="relative min-h-[100svh] flex flex-col justify-center px-6 lg:px-16 pt-14">
+  <div class="max-w-content w-full mx-auto">
 
-      <!-- Mobile photo — shown only below lg, above the name -->
-      <div class="lg:hidden mb-8">
-        <div class="relative w-48 h-60 sm:w-56 sm:h-72">
-          <!-- Corner accents -->
-          <span
-            class="absolute top-0 left-0 w-7 h-7 border-t-2 border-l-2 z-10"
-            style="border-color: var(--accent); margin: -1px;"
-          ></span>
-          <span
-            class="absolute bottom-0 right-0 w-7 h-7 border-b-2 border-r-2 z-10"
-            style="border-color: var(--accent); margin: -1px;"
-          ></span>
-          <div style="width:100%; height:100%; overflow:hidden; border: 1px solid var(--border);">
-            <img
-              src="/images/votre-photo.jpg"
-              alt="Abbas Zein Fakih"
-              style="width:100%; height:100%; object-fit:cover; object-position:top; filter:grayscale(20%);"
-              onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop'; this.onerror=null;"
-            />
-          </div>
-        </div>
+    <!-- Availability label -->
+    <div class="flex items-center gap-4 mb-8 sm:mb-10 hero-label-anim">
+      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-fg-muted">
+        {t('hero.availability')}
+      </span>
+    </div>
+
+    <!-- Top rule -->
+    <div class="h-px bg-fg-dim rule-anim" id="hero-rule-top"></div>
+
+    <!-- Name block -->
+    <div class="py-8 sm:py-12">
+      <div class="overflow-hidden">
+        <p class="font-display font-black text-fluid-hero text-fg hero-word">ABBAS</p>
       </div>
-
-      <!-- Desktop: side-by-side layout -->
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-center">
-
-        <!-- Animated Text Content (React Island) -->
-        <div class="min-w-0 w-full">
-          <HeroAnimation lang={lang} client:load />
-        </div>
-
-        <!-- Desktop photo — hidden on mobile -->
-        <div class="hidden lg:block relative flex-shrink-0">
-          <div
-            class="absolute -top-10 -left-10 select-none pointer-events-none"
-            style="font-family:'Syne',sans-serif; font-size:7rem; font-weight:800; color:var(--accent); opacity:0.1; line-height:1;"
-          >
-            01
-          </div>
-
-          <div class="relative" style="border:1px solid var(--border);">
-            <span class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 z-10" style="border-color:var(--accent); margin:-1px;"></span>
-            <span class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 z-10" style="border-color:var(--accent); margin:-1px;"></span>
-            <div style="aspect-ratio:3/4; overflow:hidden;">
-              <img
-                src="/images/votre-photo.jpg"
-                alt="Abbas Zein Fakih"
-                style="width:100%; height:100%; object-fit:cover; filter:grayscale(20%); transition:filter 0.5s ease, transform 0.7s ease; display:block;"
-                onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'; this.onerror=null;"
-                onmouseover="this.style.filter='grayscale(0%)'; this.style.transform='scale(1.03)';"
-                onmouseout="this.style.filter='grayscale(20%)'; this.style.transform='scale(1)';"
-              />
-            </div>
-          </div>
-        </div>
-
+      <div class="overflow-hidden">
+        <p class="font-display font-black text-fluid-hero text-fg hero-word">ZEIN</p>
+      </div>
+      <div class="overflow-hidden">
+        <p class="font-display font-black text-fluid-hero text-fg hero-word">FAKIH.</p>
       </div>
     </div>
-  </div>
 
-  <!-- Scroll indicator -->
-  <div
-    class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center"
-    style="opacity:0.35;"
-  >
-    <div class="animate-pulse" style="width:1px; height:50px; background:linear-gradient(to bottom, transparent, var(--accent));"></div>
+    <!-- Bottom rule -->
+    <div class="h-px bg-fg-dim rule-anim" id="hero-rule-bottom"></div>
+
+    <!-- CTA row -->
+    <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-between gap-6 hero-cta-anim">
+      <div class="flex items-center gap-8">
+        <a
+          href="/cv/mon-cv.pdf"
+          download
+          class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300 group"
+        >
+          {t('hero.download_cv')}
+          <span class="ml-1.5 inline-block group-hover:translate-y-0.5 transition-transform duration-200">↓</span>
+        </a>
+        <a
+          href={`/${lang}#projects`}
+          class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300 group"
+        >
+          {t('hero.my_projects')}
+          <span class="ml-1.5 inline-block group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+        </a>
+      </div>
+      <p class="font-mono text-[10px] tracking-[0.15em] uppercase text-fg-dim hidden sm:block">
+        {t('hero.subtitle')}
+      </p>
+    </div>
+
   </div>
 </section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+  tl.to('#hero-rule-top', { scaleX: 1, duration: 0.9, ease: 'power2.inOut' })
+    .to('.hero-word', { y: '0%', duration: 1.1, stagger: 0.1 }, '-=0.5')
+    .to('#hero-rule-bottom', { scaleX: 1, duration: 0.9, ease: 'power2.inOut' }, '-=0.5')
+    .to('.hero-label-anim', { opacity: 1, y: 0, duration: 0.6 }, '-=0.6')
+    .to('.hero-cta-anim',   { opacity: 1, y: 0, duration: 0.6 }, '-=0.4');
+</script>

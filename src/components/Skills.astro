@@ -1,95 +1,88 @@
 ---
-import { getLangFromUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-const allSkills = [
-  'JavaScript','React.js','Node.js','Express.js','MongoDB','REST API',
-  'Astro','WordPress','PHP','Laravel','SQL','NestJS','Tailwind CSS',
-  'Docker','Linux','Git','Postman','Figma','TypeScript','Next.js','PostgreSQL','Prisma',
+const groups = [
+  {
+    label: t('skills.group1'),
+    items: ['React', 'Node.js', 'TypeScript', 'MongoDB', 'Express', 'REST API'],
+  },
+  {
+    label: t('skills.group2'),
+    items: ['Next.js', 'NestJS', 'Laravel', 'PHP', 'PostgreSQL', 'Prisma', 'Docker', 'SvelteKit'],
+  },
+  {
+    label: t('skills.group3'),
+    items: ['Git / GitHub', 'Postman', 'Figma', 'Linux', 'Agile / Scrum'],
+  },
 ];
 
-const skillGroups = [
-  { key: lang === 'fr' ? 'Stack principale' : 'Core Stack', icon: 'fa-layer-group', chips: ['JavaScript','React.js','Node.js','Express.js','MongoDB','REST API'] },
-  { key: lang === 'fr' ? 'Complémentaires' : 'Complementary', icon: 'fa-toolbox', chips: ['Astro','WordPress','PHP / Laravel','SQL','NestJS','Tailwind CSS','Docker','Linux / Bash'] },
-  { key: lang === 'fr' ? 'Méthode' : 'Workflow', icon: 'fa-users-cog', chips: ['Git & GitHub','Postman','Figma','Agile'] },
-];
-
-const canDo = lang === 'fr' ? [
-  "Concevoir et développer des interfaces web modernes et responsives.",
-  "Créer des API sécurisées (authentification, rôles, validation).",
-  "Connecter front-end et back-end sur des projets full-stack.",
-  "Collaborer en équipe avec GitHub, Postman et outils Agile.",
-] : [
-  "Design and develop modern, responsive web interfaces.",
-  "Create secure APIs (authentication, roles, validation).",
-  "Connect front-end and back-end on full-stack projects.",
-  "Collaborate in teams using GitHub, Postman, and Agile tools.",
+const canDo = [
+  t('skills.cando1'),
+  t('skills.cando2'),
+  t('skills.cando3'),
+  t('skills.cando4'),
 ];
 ---
 
-<section id="skills" class="py-20 lg:py-36" style="border-bottom:1px solid var(--border); overflow:hidden;">
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+<section id="skills" class="border-t border-fg-dim">
+  <div class="max-w-content w-full mx-auto px-6 lg:px-16">
 
-    <!-- Section label -->
-    <div class="flex items-center gap-4 sm:gap-6 mb-12 lg:mb-16 reveal">
-      <span class="section-number">03</span>
-      <div class="h-px w-8 sm:w-12" style="background:var(--border);"></div>
-      <h2 class="font-display font-bold" style="font-family:'Syne',sans-serif; font-size:clamp(1.75rem,5vw,4rem); line-height:1; letter-spacing:-0.02em;">
-        {lang === 'fr' ? 'Compétences' : 'Skills'}
-      </h2>
+    <!-- Section header -->
+    <div class="flex items-baseline gap-5 py-5 border-b border-fg-dim section-header-anim">
+      <span class="font-display font-black text-fg-dim text-3xl sm:text-4xl leading-none">02</span>
+      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-fg-muted">{t('skills.label')}</span>
     </div>
 
-  </div>
-
-  <!-- Full-width Marquee -->
-  <div class="relative py-5 mb-12 lg:mb-16" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="flex overflow-hidden select-none">
-      <div class="flex shrink-0 animate-marquee">
-        {allSkills.map((skill) => <span class="skill-chip">{skill}</span>)}
-        {allSkills.map((skill) => <span class="skill-chip">{skill}</span>)}
-      </div>
-      <div class="flex shrink-0 animate-marquee2" aria-hidden="true">
-        {allSkills.map((skill) => <span class="skill-chip">{skill}</span>)}
-        {allSkills.map((skill) => <span class="skill-chip">{skill}</span>)}
-      </div>
-    </div>
-  </div>
-
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-
-    <!-- Skill group grid — 1 col mobile, 3 col desktop -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 reveal" style="border:1px solid var(--border);">
-      {skillGroups.map((group, i) => (
-        <div class="p-6 sm:p-8" style={`border-bottom:1px solid var(--border); ${i === 2 ? 'border-bottom:none;' : ''}`}>
-          <div class="flex items-center gap-3 mb-5">
-            <i class={`fa ${group.icon} text-xs`} style="color:var(--accent);"></i>
-            <h3 style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted);">{group.key}</h3>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            {group.chips.map((chip) => (
-              <span class="text-xs px-3 py-1 transition-colors duration-200 cursor-default" style="font-family:'JetBrains Mono',monospace; border:1px solid var(--border); color:#C8C8C8;">
-                {chip}
-              </span>
+    <!-- Three-column grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 border-b border-fg-dim fade-up">
+      {groups.map((group, i) => (
+        <div class={`py-10 sm:py-14 ${i < 2 ? 'md:border-r md:border-fg-dim md:pr-10' : ''} ${i > 0 ? 'md:pl-10' : ''} ${i > 0 ? 'border-t md:border-t-0 border-fg-dim' : ''}`}>
+          <p class="font-mono text-[9px] tracking-[0.2em] uppercase text-fg-dim mb-6">
+            {group.label}
+          </p>
+          <ul class="space-y-3">
+            {group.items.map((item) => (
+              <li class="font-display font-semibold text-fg text-lg sm:text-xl leading-none">
+                {item}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       ))}
     </div>
 
-    <!-- Can-do list -->
-    <div class="mt-12 lg:mt-16 reveal reveal-delay-2">
-      <p class="mb-6" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted);">
-        {lang === 'fr' ? 'Ce que je peux faire efficacement' : 'What I can do efficiently'}
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
-        {canDo.map((item) => (
-          <div class="flex items-start gap-4 py-4" style="border-bottom:1px solid var(--border);">
-            <span class="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style="background:var(--accent);"></span>
-            <p class="text-sm leading-relaxed" style="color:#C8C8C8;">{item}</p>
-          </div>
-        ))}
-      </div>
+    <!-- Can-do items -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-0 fade-up">
+      {canDo.map((item, i) => (
+        <div class={`py-5 sm:py-6 text-fg-muted text-sm leading-relaxed ${i % 2 === 0 ? 'sm:border-r sm:border-fg-dim sm:pr-10' : 'sm:pl-10'} ${i < 2 ? 'border-b border-fg-dim' : ''}`}>
+          <span class="text-fg-dim font-mono text-[9px] tracking-widest mr-3">—</span>
+          {item}
+        </div>
+      ))}
     </div>
 
   </div>
 </section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to('#skills .section-header-anim', {
+    opacity: 1, y: 0, duration: 0.7,
+    scrollTrigger: { trigger: '#skills', start: 'top 75%' },
+  });
+
+  gsap.utils.toArray<HTMLElement>('#skills .fade-up').forEach((el, i) => {
+    gsap.to(el, {
+      opacity: 1, y: 0, duration: 0.8,
+      delay: i * 0.1,
+      scrollTrigger: { trigger: el, start: 'top 80%' },
+    });
+  });
+</script>

@@ -11,7 +11,7 @@ const { title, description = "Portfolio Développeur Web — Abbas Zein Fakih", 
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -19,51 +19,35 @@ const { title, description = "Portfolio Développeur Web — Abbas Zein Fakih", 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Fonts: Syne (Display) + Inter (Body) + JetBrains Mono (Code) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
-    />
-
-    <!-- FontAwesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
   </head>
   <body>
-    <!-- Scroll Progress Bar -->
-    <div id="scroll-progress"></div>
-
     <slot />
 
-    <!-- Global scroll logic -->
-    <script is:inline>
-      // Scroll progress bar
-      const bar = document.getElementById('scroll-progress');
-      window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = `${(scrolled / total) * 100}%`;
+    <script>
+      import Lenis from 'lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
 
-      // Scroll reveal via IntersectionObserver
-      const revealEls = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
-      );
-      revealEls.forEach((el) => observer.observe(el));
+      lenis.on('scroll', () => ScrollTrigger.update());
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
     </script>
   </body>
 </html>

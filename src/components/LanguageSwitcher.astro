@@ -1,22 +1,15 @@
 ---
 import { getLangFromUrl } from '../i18n/utils';
-import { languages } from '../i18n/ui';
 
 const lang = getLangFromUrl(Astro.url);
 const otherLang = lang === 'fr' ? 'en' : 'fr';
-const otherLabel = languages[otherLang];
 ---
 
 <a
   href={`/${otherLang}`}
-  class="flex items-center gap-2 text-xs tracking-widest uppercase transition-colors duration-300 hover:text-white"
-  style="font-family: 'JetBrains Mono', monospace; color: var(--muted);"
+  class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300"
 >
-  <span
-    class="w-1.5 h-1.5 rounded-full"
-    style="background: var(--accent);"
-  ></span>
-  {lang.toUpperCase()}
-  <span style="color: var(--border);">/</span>
-  <span class="hover:text-white">{otherLang.toUpperCase()}</span>
+  <span class="text-fg">{lang.toUpperCase()}</span>
+  <span class="text-fg-dim mx-0.5">/</span>
+  <span>{otherLang.toUpperCase()}</span>
 </a>

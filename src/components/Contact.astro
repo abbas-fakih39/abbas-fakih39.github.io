@@ -1,76 +1,87 @@
 ---
-import { getLangFromUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const protocols = [
+  { label: 'Email',    value: 'abbassfakih54321@outlook.com', href: 'mailto:abbassfakih54321@outlook.com', external: false },
+  { label: 'Phone',    value: '+33 07 69 51 81 92',           href: 'tel:+33769518192',                    external: false },
+  { label: 'GitHub',   value: 'github.com/abbas-fakih39',     href: 'https://github.com/abbas-fakih39',    external: true },
+  { label: 'LinkedIn', value: 'linkedin.com/in/abbas-zein-fakih', href: 'https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/', external: true },
+];
 ---
 
-<section id="contact" class="py-20 lg:py-36" style="border-bottom:1px solid var(--border);">
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+<section id="contact" class="border-t border-fg-dim">
+  <div class="max-w-content w-full mx-auto px-6 lg:px-16">
 
-    <!-- Section label -->
-    <div class="flex items-center gap-4 sm:gap-6 mb-12 lg:mb-16 reveal">
-      <span class="section-number">05</span>
-      <div class="h-px w-8 sm:w-12" style="background:var(--border);"></div>
-      <h2 class="font-display font-bold" style="font-family:'Syne',sans-serif; font-size:clamp(1.75rem,5vw,4rem); line-height:1; letter-spacing:-0.02em;">
-        Contact
+    <!-- Section header -->
+    <div class="flex items-baseline gap-5 py-5 border-b border-fg-dim section-header-anim">
+      <span class="font-display font-black text-fg-dim text-3xl sm:text-4xl leading-none">04</span>
+      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-fg-muted">{t('contact.label')}</span>
+    </div>
+
+    <!-- CTA headline -->
+    <div class="py-12 sm:py-16 border-b border-fg-dim fade-up">
+      <h2 class="font-display font-black text-fluid-display text-fg leading-[0.92] tracking-tight">
+        {t('contact.cta1')}<br />
+        <span class="text-fg-muted">{t('contact.cta2')}</span>
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+    <!-- Split: protocols | form -->
+    <div class="grid grid-cols-1 lg:grid-cols-2">
 
-      <!-- Left: CTA -->
-      <div class="reveal">
-        <p class="font-display font-bold leading-none mb-6 sm:mb-8" style="font-family:'Syne',sans-serif; font-size:clamp(2rem,6vw,5.5rem); letter-spacing:-0.03em; color:var(--text);">
-          {lang === 'fr' ? "Construisons quelque chose." : "Let's build something."}
-        </p>
-        <p class="text-sm sm:text-base leading-relaxed mb-8 sm:mb-12" style="color:var(--muted); max-width:42ch;">
-          {lang === 'fr'
-            ? "Disponible pour une alternance full-stack 2026-2027. N'hésitez pas à me contacter pour discuter de votre projet."
-            : "Available for a full-stack work-study 2026-2027. Feel free to reach out to discuss your project."}
+      <!-- Left: info + links -->
+      <div class="py-12 sm:py-16 lg:border-r lg:border-fg-dim lg:pr-16 fade-up">
+        <p class="text-fg-muted leading-relaxed mb-10 max-w-sm" style="font-size: clamp(0.875rem, 1.2vw, 1rem); line-height: 1.8;">
+          {t('contact.subtext')}
         </p>
 
-        <div class="space-y-0" style="border-top:1px solid var(--border);">
-          <a href="mailto:abbassfakih54321@outlook.com" class="flex items-center justify-between group py-4" style="border-bottom:1px solid var(--border); text-decoration:none;">
-            <span class="text-xs sm:text-sm transition-colors duration-300 truncate mr-4" style="font-family:'JetBrains Mono',monospace; color:var(--muted);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--muted)'">
-              abbassfakih54321@outlook.com
-            </span>
-            <i class="fa fa-arrow-right text-xs shrink-0 transition-all duration-300 group-hover:translate-x-1" style="color:var(--accent);"></i>
-          </a>
+        <p class="font-mono text-[9px] tracking-[0.2em] uppercase text-fg-dim mb-5">
+          {t('contact.protocols')}
+        </p>
 
-          <a href="tel:+33769518192" class="flex items-center justify-between group py-4" style="border-bottom:1px solid var(--border); text-decoration:none;">
-            <span class="text-xs sm:text-sm transition-colors duration-300" style="font-family:'JetBrains Mono',monospace; color:var(--muted);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--muted)'">
-              +33 07 69 51 81 92
-            </span>
-            <i class="fa fa-arrow-right text-xs shrink-0 transition-all duration-300 group-hover:translate-x-1" style="color:var(--accent);"></i>
-          </a>
-
-          <div class="flex gap-6 pt-5">
-            <a href="https://github.com/abbas-fakih39" target="_blank" rel="noopener noreferrer" class="transition-colors duration-300 hover:text-white" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none;">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/" target="_blank" rel="noopener noreferrer" class="transition-colors duration-300 hover:text-white" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none;">LinkedIn ↗</a>
-          </div>
+        <div class="space-y-4">
+          {protocols.map((p) => (
+            <a
+              href={p.href}
+              target={p.external ? '_blank' : undefined}
+              rel={p.external ? 'noopener noreferrer' : undefined}
+              class="flex items-baseline gap-3 text-fg-muted hover:text-fg transition-colors duration-300 group"
+            >
+              <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-fg-dim w-16 flex-shrink-0">{p.label}</span>
+              <span class="font-mono text-xs group-hover:text-accent transition-colors duration-300">{p.value}</span>
+            </a>
+          ))}
         </div>
       </div>
 
-      <!-- Right: Form -->
-      <div class="reveal reveal-delay-2">
-        <form id="contact-form" class="space-y-6 sm:space-y-8">
-          <div class="form-field">
-            <input type="text" id="name" name="name" placeholder=" " required />
-            <label for="name">{lang === 'fr' ? 'Votre Nom' : 'Your Name'}</label>
+      <!-- Right: form -->
+      <div class="py-12 sm:py-16 lg:pl-16 fade-up border-t lg:border-t-0 border-fg-dim">
+        <form id="contact-form" class="space-y-8">
+          <div class="form-editorial">
+            <input type="text"  id="name"    name="name"    placeholder=" " required />
+            <label for="name">{t('contact.form.name')}</label>
           </div>
-          <div class="form-field">
-            <input type="email" id="email" name="email" placeholder=" " required />
-            <label for="email">{lang === 'fr' ? 'Votre Email' : 'Your Email'}</label>
+          <div class="form-editorial">
+            <input type="email" id="email"   name="email"   placeholder=" " required />
+            <label for="email">{t('contact.form.email')}</label>
           </div>
-          <div class="form-field">
-            <input type="text" id="subject" name="subject" placeholder=" " required />
-            <label for="subject">{lang === 'fr' ? 'Sujet' : 'Subject'}</label>
+          <div class="form-editorial">
+            <input type="text"  id="subject" name="subject" placeholder=" " required />
+            <label for="subject">{t('contact.form.subject')}</label>
           </div>
-          <div class="form-field">
+          <div class="form-editorial">
             <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
-            <label for="message">Message</label>
+            <label for="message">{t('contact.form.message')}</label>
           </div>
-          <button type="submit" id="submit-btn" class="w-full py-4 text-xs sm:text-sm tracking-widest uppercase transition-all duration-300" style="font-family:'JetBrains Mono',monospace; background:var(--accent); color:#fff; border:none; cursor:pointer; letter-spacing:0.15em;" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='var(--accent)'">
-            {lang === 'fr' ? '→ Envoyer' : '→ Send Message'}
+          <button
+            type="submit"
+            id="submit-btn"
+            class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300"
+          >
+            {t('contact.form.send')}
           </button>
         </form>
       </div>
@@ -79,26 +90,59 @@ const lang = getLangFromUrl(Astro.url);
   </div>
 </section>
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" />
 <script is:inline>
-  (function() { emailjs.init("bLECYSz1NM7GcjAev"); })();
-  const form = document.getElementById('contact-form');
-  const btn = document.getElementById('submit-btn');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    btn.disabled = true;
-    btn.textContent = '...';
-    emailjs.sendForm('service_jq5ib7h', 'template_m3asgjl', form)
-      .then(() => {
-        btn.textContent = '✓ Sent!';
-        btn.style.background = '#059669';
-        form.reset();
-        setTimeout(() => { btn.disabled = false; btn.textContent = '→ Send Message'; btn.style.background = 'var(--accent)'; }, 4000);
-      })
-      .catch(() => {
-        btn.textContent = '✕ Error';
-        btn.style.background = '#DC2626';
-        setTimeout(() => { btn.disabled = false; btn.textContent = '→ Send Message'; btn.style.background = 'var(--accent)'; }, 4000);
-      });
+  (function() {
+    emailjs.init("bLECYSz1NM7GcjAev");
+    const form = document.getElementById('contact-form');
+    const btn  = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const originalText = btn.textContent;
+      btn.textContent = '...';
+      btn.disabled = true;
+
+      emailjs.sendForm('service_jq5ib7h', 'template_m3asgjl', form)
+        .then(() => {
+          btn.textContent = '✓ Sent';
+          btn.style.color = '#E2FF00';
+          form.reset();
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.color = '';
+            btn.disabled = false;
+          }, 4000);
+        })
+        .catch(() => {
+          btn.textContent = '✕ Error';
+          btn.style.color = '#ff4444';
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.color = '';
+            btn.disabled = false;
+          }, 4000);
+        });
+    });
+  })();
+</script>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to('#contact .section-header-anim', {
+    opacity: 1, y: 0, duration: 0.7,
+    scrollTrigger: { trigger: '#contact', start: 'top 75%' },
+  });
+
+  gsap.utils.toArray<HTMLElement>('#contact .fade-up').forEach((el, i) => {
+    gsap.to(el, {
+      opacity: 1, y: 0, duration: 0.8,
+      delay: i * 0.1,
+      scrollTrigger: { trigger: el, start: 'top 80%' },
+    });
   });
 </script>
