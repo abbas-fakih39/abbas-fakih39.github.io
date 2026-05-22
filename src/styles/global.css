@@ -3,74 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0A0A0A;
-  --bg-surface: #111111;
-  --fg: #F2F2F2;
-  --fg-muted: #666666;
-  --fg-dim: #2A2A2A;
-  --accent: #E2FF00;
-  --accent-dim: rgba(226, 255, 0, 0.05);
-  color-scheme: dark;
+  --bg:         #FAFAFA;
+  --surface:    #F0F0F0;
+  --border:     #E2E2E2;
+  --fg:         #111111;
+  --fg-mid:     #555555;
+  --fg-dim:     #999999;
+  --accent:     #0066FF;
+  --accent-bg:  #EEF3FF;
 }
 
 html {
   background: var(--bg);
+  color: var(--fg);
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--fg-dim); border-radius: 0; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
 ::selection {
   background: var(--accent);
-  color: var(--bg);
-}
-
-/* ─── Contact Form ─────────────────────────────────── */
-.form-editorial {
-  position: relative;
-}
-
-.form-editorial input,
-.form-editorial textarea {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--fg-dim);
-  outline: none;
-  color: var(--fg);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
-  padding: 1.25rem 0 0.75rem;
-  transition: border-color 0.25s ease;
-  resize: none;
-}
-
-.form-editorial input:focus,
-.form-editorial textarea:focus {
-  border-color: var(--fg-muted);
-}
-
-.form-editorial label {
-  position: absolute;
-  top: 1.25rem;
-  left: 0;
-  font-size: 0.6rem;
-  color: var(--fg-muted);
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  pointer-events: none;
+  color: #fff;
 }
 
 /* ─── Scroll offset for sticky header (56px = h-14) ── */
@@ -79,19 +42,13 @@ section[id] {
 }
 
 /* ─── Animation initial states ─────────────────────── */
-.rule-anim {
-  transform-origin: left;
-  transform: scaleX(0);
-}
-
-.hero-word {
-  transform: translateY(110%);
-}
-
-.hero-label-anim,
-.hero-cta-anim {
+.hero-chip,
+.hero-name,
+.hero-sub,
+.hero-divider,
+.hero-cta {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(24px);
 }
 
 .section-header-anim {
@@ -101,14 +58,52 @@ section[id] {
 
 .fade-up {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(28px);
 }
 
-.form-editorial input:focus ~ label,
-.form-editorial input:not(:placeholder-shown) ~ label,
-.form-editorial textarea:focus ~ label,
-.form-editorial textarea:not(:placeholder-shown) ~ label {
-  top: 0;
-  font-size: 0.5rem;
+/* ─── Contact Form ─────────────────────────────────── */
+.form-field {
+  position: relative;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--border);
+  outline: none;
+  color: var(--fg);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9375rem;
+  padding: 1.4rem 0 0.6rem;
+  transition: border-color 0.2s ease;
+  resize: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accent);
+}
+
+.form-field label {
+  position: absolute;
+  top: 1.4rem;
+  left: 0;
+  font-size: 0.6875rem;
+  color: var(--fg-dim);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.18s ease;
+  pointer-events: none;
+}
+
+.form-field input:focus ~ label,
+.form-field input:not(:placeholder-shown) ~ label,
+.form-field textarea:focus ~ label,
+.form-field textarea:not(:placeholder-shown) ~ label {
+  top: 0.2rem;
+  font-size: 0.5625rem;
   color: var(--accent);
 }

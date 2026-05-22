@@ -20,44 +20,55 @@ const statement = lang === 'fr'
   : 'Full-stack developer based in Lille, building interfaces and APIs for real products.';
 ---
 
-<section id="about" class="border-t border-fg-dim">
-  <div class="max-w-content w-full mx-auto px-6 lg:px-16">
+<section id="about" class="border-t border-border">
+  <div class="max-w-content w-full mx-auto px-6 lg:px-12">
 
     <!-- Section header -->
-    <div class="flex items-baseline gap-5 py-5 border-b border-fg-dim section-header-anim">
-      <span class="font-display font-black text-fg-dim text-3xl sm:text-4xl leading-none">01</span>
-      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-fg-muted">{t('about.label')}</span>
+    <div class="flex items-center gap-4 py-5 border-b border-border section-header-anim">
+      <span class="font-mono text-[11px] text-fg-dim tracking-widest">01</span>
+      <span class="w-px h-4 bg-border"></span>
+      <span class="font-mono text-[11px] uppercase tracking-widest text-fg-dim">{t('about.label')}</span>
     </div>
 
     <!-- Statement -->
-    <p class="mt-12 sm:mt-16 font-display font-black leading-[1.05] tracking-tight max-w-4xl fade-up"
-       style="font-size: clamp(1.6rem, 4vw, 3.5rem);">
+    <p class="mt-12 sm:mt-16 font-display font-semibold leading-tight max-w-3xl fade-up"
+       style="font-size: clamp(1.5rem, 3.5vw, 2.4rem);">
       {statement}
     </p>
 
-    <!-- Stats -->
-    <div class="mt-12 sm:mt-16 grid grid-cols-3 border-t border-fg-dim fade-up">
+    <!-- Stats + Photo row -->
+    <div class="mt-12 sm:mt-16 grid grid-cols-3 lg:grid-cols-4 border-t border-border fade-up">
       {stats.map((stat, i) => (
-        <div class={`py-8 sm:py-10 ${i < 2 ? 'border-r border-fg-dim' : ''} ${i > 0 ? 'pl-6 sm:pl-10' : ''}`}>
-          <span class="block font-display font-black text-fg leading-none"
-                style="font-size: clamp(2.5rem, 6vw, 5rem);">
+        <div class={`py-8 sm:py-10 border-r border-border pr-6 sm:pr-10 ${i > 0 ? 'pl-6 sm:pl-10' : ''}`}>
+          <span class="block font-display font-bold text-fg leading-none"
+                style="font-size: clamp(2rem, 5vw, 3.5rem);">
             {stat.value}
           </span>
-          <span class="block mt-2 font-mono text-[9px] tracking-[0.18em] uppercase text-fg-muted">
+          <span class="block mt-2 font-mono text-[10px] tracking-widest uppercase text-fg-dim">
             {stat.label}
           </span>
         </div>
       ))}
+      <!-- Photo (desktop only, 4th column) -->
+      <div class="hidden lg:flex items-center justify-end pl-10 py-8">
+        <div class="w-28 h-36 rounded-lg overflow-hidden bg-surface border border-border">
+          <img
+            src="/images/votre-photo.jpg"
+            alt="Abbas Fakih"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
     </div>
 
     <!-- Two text blocks -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 border-t border-fg-dim">
+    <div class="grid grid-cols-1 lg:grid-cols-2 border-t border-border">
       {blocks.map((block, i) => (
-        <div class={`py-10 sm:py-14 fade-up ${i === 0 ? 'lg:border-r lg:border-fg-dim lg:pr-12' : 'lg:pl-12'}`}>
-          <p class="font-mono text-[9px] tracking-[0.2em] uppercase text-fg-dim mb-5">
+        <div class={`py-10 sm:py-14 fade-up ${i === 0 ? 'lg:border-r lg:border-border lg:pr-12' : 'lg:pl-12'} ${i > 0 ? 'border-t lg:border-t-0 border-border' : ''}`}>
+          <p class="font-mono text-[10px] tracking-widest uppercase text-fg-dim mb-5">
             {block.title}
           </p>
-          <p class="text-fg-muted leading-relaxed" style="font-size: clamp(0.875rem, 1.3vw, 1rem); line-height: 1.8;">
+          <p class="text-fg-mid leading-relaxed text-[15px] sm:text-base">
             {block.body}
           </p>
         </div>
@@ -74,15 +85,15 @@ const statement = lang === 'fr'
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.to('#about .section-header-anim', {
-    opacity: 1, y: 0, duration: 0.7,
-    scrollTrigger: { trigger: '#about', start: 'top 75%' },
+    opacity: 1, y: 0, duration: 0.6,
+    scrollTrigger: { trigger: '#about', start: 'top 78%' },
   });
 
-  gsap.utils.toArray('#about .fade-up').forEach((el, i) => {
+  gsap.utils.toArray<HTMLElement>('#about .fade-up').forEach((el, i) => {
     gsap.to(el, {
-      opacity: 1, y: 0, duration: 0.8,
-      delay: i * 0.1,
-      scrollTrigger: { trigger: el, start: 'top 80%' },
+      opacity: 1, y: 0, duration: 0.7,
+      delay: i * 0.08,
+      scrollTrigger: { trigger: el, start: 'top 82%' },
     });
   });
 </script>

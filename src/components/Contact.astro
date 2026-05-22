@@ -12,33 +12,34 @@ const protocols = [
 ];
 ---
 
-<section id="contact" class="border-t border-fg-dim">
-  <div class="max-w-content w-full mx-auto px-6 lg:px-16">
+<section id="contact" class="border-t border-border">
+  <div class="max-w-content w-full mx-auto px-6 lg:px-12">
 
     <!-- Section header -->
-    <div class="flex items-baseline gap-5 py-5 border-b border-fg-dim section-header-anim">
-      <span class="font-display font-black text-fg-dim text-3xl sm:text-4xl leading-none">04</span>
-      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-fg-muted">{t('contact.label')}</span>
+    <div class="flex items-center gap-4 py-5 border-b border-border section-header-anim">
+      <span class="font-mono text-[11px] text-fg-dim tracking-widest">04</span>
+      <span class="w-px h-4 bg-border"></span>
+      <span class="font-mono text-[11px] uppercase tracking-widest text-fg-dim">{t('contact.label')}</span>
     </div>
 
     <!-- CTA headline -->
-    <div class="py-12 sm:py-16 border-b border-fg-dim fade-up">
-      <h2 class="font-display font-black text-fluid-display text-fg leading-[0.92] tracking-tight">
+    <div class="py-12 sm:py-16 border-b border-border fade-up">
+      <h2 class="font-display font-bold text-fluid-display text-fg leading-tight">
         {t('contact.cta1')}<br />
-        <span class="text-fg-muted">{t('contact.cta2')}</span>
+        <span class="text-accent">{t('contact.cta2')}</span>
       </h2>
     </div>
 
-    <!-- Split: protocols | form -->
+    <!-- Split: info | form -->
     <div class="grid grid-cols-1 lg:grid-cols-2">
 
-      <!-- Left: info + links -->
-      <div class="py-12 sm:py-16 lg:border-r lg:border-fg-dim lg:pr-16 fade-up">
-        <p class="text-fg-muted leading-relaxed mb-10 max-w-sm" style="font-size: clamp(0.875rem, 1.2vw, 1rem); line-height: 1.8;">
+      <!-- Left: subtext + links -->
+      <div class="py-12 sm:py-14 lg:border-r lg:border-border lg:pr-14 fade-up">
+        <p class="text-fg-mid leading-relaxed text-[15px] mb-10 max-w-sm">
           {t('contact.subtext')}
         </p>
 
-        <p class="font-mono text-[9px] tracking-[0.2em] uppercase text-fg-dim mb-5">
+        <p class="font-mono text-[10px] tracking-widest uppercase text-fg-dim mb-5">
           {t('contact.protocols')}
         </p>
 
@@ -48,38 +49,38 @@ const protocols = [
               href={p.href}
               target={p.external ? '_blank' : undefined}
               rel={p.external ? 'noopener noreferrer' : undefined}
-              class="flex items-baseline gap-3 text-fg-muted hover:text-fg transition-colors duration-300 group"
+              class="flex items-baseline gap-3 group"
             >
-              <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-fg-dim w-16 flex-shrink-0">{p.label}</span>
-              <span class="font-mono text-xs group-hover:text-accent transition-colors duration-300">{p.value}</span>
+              <span class="font-mono text-[10px] tracking-wide uppercase text-fg-dim w-16 flex-shrink-0">{p.label}</span>
+              <span class="text-[13px] text-fg-mid group-hover:text-accent transition-colors duration-200">{p.value}</span>
             </a>
           ))}
         </div>
       </div>
 
       <!-- Right: form -->
-      <div class="py-12 sm:py-16 lg:pl-16 fade-up border-t lg:border-t-0 border-fg-dim">
-        <form id="contact-form" class="space-y-8">
-          <div class="form-editorial">
+      <div class="py-12 sm:py-14 lg:pl-14 fade-up border-t lg:border-t-0 border-border">
+        <form id="contact-form" class="space-y-7">
+          <div class="form-field">
             <input type="text"  id="name"    name="name"    placeholder=" " required />
             <label for="name">{t('contact.form.name')}</label>
           </div>
-          <div class="form-editorial">
+          <div class="form-field">
             <input type="email" id="email"   name="email"   placeholder=" " required />
             <label for="email">{t('contact.form.email')}</label>
           </div>
-          <div class="form-editorial">
+          <div class="form-field">
             <input type="text"  id="subject" name="subject" placeholder=" " required />
             <label for="subject">{t('contact.form.subject')}</label>
           </div>
-          <div class="form-editorial">
+          <div class="form-field">
             <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
             <label for="message">{t('contact.form.message')}</label>
           </div>
           <button
             type="submit"
             id="submit-btn"
-            class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300"
+            class="px-6 py-2.5 rounded-lg bg-accent text-white text-[13px] font-medium hover:bg-blue-700 transition-colors duration-200 disabled:opacity-60"
           >
             {t('contact.form.send')}
           </button>
@@ -106,20 +107,20 @@ const protocols = [
       emailjs.sendForm('service_jq5ib7h', 'template_m3asgjl', form)
         .then(() => {
           btn.textContent = '✓ Sent';
-          btn.style.color = '#E2FF00';
+          btn.style.background = '#22c55e';
           form.reset();
           setTimeout(() => {
             btn.textContent = originalText;
-            btn.style.color = '';
+            btn.style.background = '';
             btn.disabled = false;
           }, 4000);
         })
         .catch(() => {
           btn.textContent = '✕ Error';
-          btn.style.color = '#ff4444';
+          btn.style.background = '#ef4444';
           setTimeout(() => {
             btn.textContent = originalText;
-            btn.style.color = '';
+            btn.style.background = '';
             btn.disabled = false;
           }, 4000);
         });
@@ -134,15 +135,15 @@ const protocols = [
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.to('#contact .section-header-anim', {
-    opacity: 1, y: 0, duration: 0.7,
-    scrollTrigger: { trigger: '#contact', start: 'top 75%' },
+    opacity: 1, y: 0, duration: 0.6,
+    scrollTrigger: { trigger: '#contact', start: 'top 78%' },
   });
 
   gsap.utils.toArray<HTMLElement>('#contact .fade-up').forEach((el, i) => {
     gsap.to(el, {
-      opacity: 1, y: 0, duration: 0.8,
-      delay: i * 0.1,
-      scrollTrigger: { trigger: el, start: 'top 80%' },
+      opacity: 1, y: 0, duration: 0.7,
+      delay: i * 0.08,
+      scrollTrigger: { trigger: el, start: 'top 82%' },
     });
   });
 </script>

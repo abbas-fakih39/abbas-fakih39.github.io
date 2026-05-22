@@ -32,7 +32,7 @@ const projects = [
   {
     title: 'Felikso',
     desc: lang === 'fr'
-      ? 'Site WordPress pour l\'association lilloise Felikso.'
+      ? "Site WordPress pour l'association lilloise Felikso."
       : 'WordPress website for the Lille association Felikso.',
     tech: ['WordPress'],
     link: 'https://www.felikso.org/',
@@ -48,63 +48,70 @@ const projects = [
 ];
 ---
 
-<section id="projects" class="border-t border-fg-dim">
-  <div class="max-w-content w-full mx-auto px-6 lg:px-16">
+<section id="projects" class="border-t border-border">
+  <div class="max-w-content w-full mx-auto px-6 lg:px-12">
 
     <!-- Section header -->
-    <div class="flex items-baseline gap-5 py-5 border-b border-fg-dim section-header-anim">
-      <span class="font-display font-black text-fg-dim text-3xl sm:text-4xl leading-none">03</span>
-      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-fg-muted">{t('projects.label')}</span>
+    <div class="flex items-center gap-4 py-5 border-b border-border section-header-anim">
+      <span class="font-mono text-[11px] text-fg-dim tracking-widest">03</span>
+      <span class="w-px h-4 bg-border"></span>
+      <span class="font-mono text-[11px] uppercase tracking-widest text-fg-dim">{t('projects.label')}</span>
     </div>
 
   </div>
 
-  <!-- Project rows (full-width rules, content capped at max-content) -->
+  <!-- Project rows -->
   {projects.map((project, i) => (
     <a
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      class="project-row block border-t border-fg-dim transition-colors duration-300 hover:bg-[var(--accent-dim)] group fade-up"
+      class="group block border-t border-border hover:bg-surface transition-colors duration-200 fade-up"
     >
-      <div class="max-w-content mx-auto px-6 lg:px-16 py-7 sm:py-9 flex items-center justify-between gap-6">
+      <div class="max-w-content mx-auto px-6 lg:px-12 py-6 sm:py-7 flex items-center justify-between gap-6">
 
-        <!-- Left: number + title -->
-        <div class="flex items-baseline gap-5 sm:gap-8 min-w-0 flex-1">
-          <span class="font-mono text-[10px] tracking-[0.2em] text-fg-dim flex-shrink-0 tabular-nums">
+        <!-- Left: number + title + desc -->
+        <div class="flex items-start sm:items-center gap-5 sm:gap-8 min-w-0 flex-1">
+          <span class="font-mono text-[11px] text-fg-dim flex-shrink-0 tabular-nums mt-0.5 sm:mt-0">
             0{i + 1}
           </span>
-          <h3 class="font-display font-black text-fluid-xl text-fg leading-tight group-hover:text-accent transition-colors duration-300">
-            {project.title}
-          </h3>
+          <div class="min-w-0">
+            <h3 class="font-display font-semibold text-lg sm:text-xl text-fg group-hover:text-accent transition-colors duration-200 leading-tight">
+              {project.title}
+            </h3>
+            <p class="hidden sm:block mt-1 text-[13px] text-fg-dim leading-relaxed truncate max-w-lg">
+              {project.desc}
+            </p>
+          </div>
         </div>
 
-        <!-- Right: tech + arrow (desktop) -->
-        <div class="hidden lg:flex items-center gap-4 flex-shrink-0">
-          {project.tech.map((tech) => (
-            <span class="font-mono text-[9px] tracking-[0.1em] uppercase text-fg-muted">{tech}</span>
-          ))}
-          <span class="ml-4 text-fg-muted group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 text-base">→</span>
+        <!-- Right: tech pills + arrow -->
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <div class="hidden lg:flex items-center gap-2">
+            {project.tech.map((tech) => (
+              <span class="px-2.5 py-1 rounded-full bg-surface border border-border text-[11px] font-mono text-fg-dim">
+                {tech}
+              </span>
+            ))}
+          </div>
+          <span class="text-fg-dim group-hover:text-accent group-hover:translate-x-1 transition-all duration-200 text-base ml-2">→</span>
         </div>
-
-        <!-- Arrow only (mobile) -->
-        <span class="lg:hidden text-fg-muted group-hover:text-accent transition-colors duration-300 text-base flex-shrink-0">→</span>
 
       </div>
     </a>
   ))}
 
-  <!-- Closing rule + GitHub CTA -->
-  <div class="border-t border-fg-dim">
-    <div class="max-w-content mx-auto px-6 lg:px-16 py-10 sm:py-12 fade-up">
+  <!-- GitHub CTA -->
+  <div class="border-t border-border">
+    <div class="max-w-content mx-auto px-6 lg:px-12 py-8 fade-up">
       <a
         href="https://github.com/abbas-fakih39"
         target="_blank"
         rel="noopener noreferrer"
-        class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300 group"
+        class="inline-flex items-center gap-2 text-[13px] font-medium text-fg-mid hover:text-accent transition-colors duration-200"
       >
         {t('projects.github')}
-        <span class="ml-2 inline-block group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+        <span class="text-xs">→</span>
       </a>
     </div>
   </div>
@@ -118,15 +125,15 @@ const projects = [
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.to('#projects .section-header-anim', {
-    opacity: 1, y: 0, duration: 0.7,
-    scrollTrigger: { trigger: '#projects', start: 'top 75%' },
+    opacity: 1, y: 0, duration: 0.6,
+    scrollTrigger: { trigger: '#projects', start: 'top 78%' },
   });
 
   gsap.utils.toArray<HTMLElement>('#projects .fade-up').forEach((el, i) => {
     gsap.to(el, {
       opacity: 1, y: 0, duration: 0.6,
-      delay: i * 0.06,
-      scrollTrigger: { trigger: el, start: 'top 85%' },
+      delay: i * 0.05,
+      scrollTrigger: { trigger: el, start: 'top 87%' },
     });
   });
 </script>

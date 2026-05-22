@@ -6,21 +6,21 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-bg border-b border-fg-dim">
-  <div class="max-w-content w-full mx-auto flex items-center justify-between h-14 px-6 lg:px-16">
+<header class="fixed top-0 left-0 right-0 z-50 h-14 bg-bg/95 backdrop-blur-sm border-b border-border">
+  <div class="max-w-content w-full mx-auto flex items-center justify-between h-full px-6 lg:px-12">
 
     <a
       href={`/${lang}`}
-      class="font-display font-black text-sm text-fg hover:text-accent transition-colors duration-300"
+      class="font-mono text-sm font-medium text-fg hover:text-accent transition-colors duration-200"
     >
-      AZF
+      AF
     </a>
 
-    <nav class="hidden md:flex items-center gap-10" aria-label="Navigation">
-      <a href={`/${lang}#about`}    class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300">{t('nav.about')}</a>
-      <a href={`/${lang}#skills`}   class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300">{t('nav.skills')}</a>
-      <a href={`/${lang}#projects`} class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300">{t('nav.projects')}</a>
-      <a href={`/${lang}#contact`}  class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300">{t('nav.contact')}</a>
+    <nav class="hidden md:flex items-center gap-8" aria-label="Navigation">
+      <a href={`/${lang}#about`}    class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.about')}</a>
+      <a href={`/${lang}#skills`}   class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.skills')}</a>
+      <a href={`/${lang}#projects`} class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.projects')}</a>
+      <a href={`/${lang}#contact`}  class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.contact')}</a>
     </nav>
 
     <LanguageSwitcher />

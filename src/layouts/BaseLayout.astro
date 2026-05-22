@@ -7,11 +7,11 @@ interface Props {
   lang: string;
 }
 
-const { title, description = "Portfolio Développeur Web — Abbas Zein Fakih", lang } = Astro.props;
+const { title, description = "Portfolio Développeur Full-Stack — Abbas Zein Fakih", lang } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang} class="dark">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -19,10 +19,12 @@ const { title, description = "Portfolio Développeur Web — Abbas Zein Fakih", 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
   </head>

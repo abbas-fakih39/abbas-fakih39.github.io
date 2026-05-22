@@ -5,73 +5,56 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section id="home" class="relative min-h-[100svh] flex flex-col justify-center px-6 lg:px-16 pt-14">
-  <div class="max-w-content w-full mx-auto">
+<section id="home" class="min-h-[100svh] flex flex-col items-center justify-center text-center px-6 pt-14">
 
-    <!-- Availability label -->
-    <div class="flex items-center gap-4 mb-8 sm:mb-10 hero-label-anim">
-      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-fg-muted">
-        {t('hero.availability')}
-      </span>
-    </div>
-
-    <!-- Top rule -->
-    <div class="h-px bg-fg-dim rule-anim" id="hero-rule-top"></div>
-
-    <!-- Name block -->
-    <div class="py-8 sm:py-12">
-      <div class="overflow-hidden">
-        <p class="font-display font-black text-fluid-hero text-fg hero-word">ABBAS</p>
-      </div>
-      <div class="overflow-hidden">
-        <p class="font-display font-black text-fluid-hero text-fg hero-word">ZEIN</p>
-      </div>
-      <div class="overflow-hidden">
-        <p class="font-display font-black text-fluid-hero text-fg hero-word">FAKIH.</p>
-      </div>
-    </div>
-
-    <!-- Bottom rule -->
-    <div class="h-px bg-fg-dim rule-anim" id="hero-rule-bottom"></div>
-
-    <!-- CTA row -->
-    <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-between gap-6 hero-cta-anim">
-      <div class="flex items-center gap-8">
-        <a
-          href="/cv/mon-cv.pdf"
-          download
-          class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300 group"
-        >
-          {t('hero.download_cv')}
-          <span class="ml-1.5 inline-block group-hover:translate-y-0.5 transition-transform duration-200">↓</span>
-        </a>
-        <a
-          href={`/${lang}#projects`}
-          class="font-mono text-[10px] tracking-[0.18em] uppercase text-fg-muted hover:text-fg transition-colors duration-300 group"
-        >
-          {t('hero.my_projects')}
-          <span class="ml-1.5 inline-block group-hover:translate-x-0.5 transition-transform duration-200">→</span>
-        </a>
-      </div>
-      <p class="font-mono text-[10px] tracking-[0.15em] uppercase text-fg-dim hidden sm:block">
-        {t('hero.subtitle')}
-      </p>
-    </div>
-
+  <!-- Status chip -->
+  <div class="hero-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent-bg mb-10">
+    <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+    <span class="font-mono text-[11px] text-accent tracking-wide">{t('hero.availability')}</span>
   </div>
+
+  <!-- Name -->
+  <h1 class="hero-name font-display font-bold text-fluid-hero text-fg leading-[0.9] tracking-tight mb-6">
+    Abbas Fakih
+  </h1>
+
+  <!-- Subtitle -->
+  <p class="hero-sub text-fluid-xl text-fg-mid font-normal mb-8 max-w-md">
+    {t('hero.subtitle')} &mdash; Lille, France
+  </p>
+
+  <!-- Divider -->
+  <div class="hero-divider w-12 h-px bg-border mb-10"></div>
+
+  <!-- CTAs -->
+  <div class="hero-cta flex flex-wrap items-center justify-center gap-4">
+    <a
+      href="/cv/mon-cv.pdf"
+      download
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-white text-[13px] font-medium hover:bg-blue-700 transition-colors duration-200"
+    >
+      {t('hero.download_cv')}
+      <span class="text-xs">↓</span>
+    </a>
+    <a
+      href={`/${lang}#projects`}
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-[13px] font-medium text-fg-mid hover:border-fg hover:text-fg transition-all duration-200"
+    >
+      {t('hero.my_projects')}
+      <span class="text-xs">→</span>
+    </a>
+  </div>
+
 </section>
 
 <script>
   import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  gsap.registerPlugin(ScrollTrigger);
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-  tl.to('#hero-rule-top', { scaleX: 1, duration: 0.9, ease: 'power2.inOut' })
-    .to('.hero-word', { y: '0%', duration: 1.1, stagger: 0.1 }, '-=0.5')
-    .to('#hero-rule-bottom', { scaleX: 1, duration: 0.9, ease: 'power2.inOut' }, '-=0.5')
-    .to('.hero-label-anim', { opacity: 1, y: 0, duration: 0.6 }, '-=0.6')
-    .to('.hero-cta-anim',   { opacity: 1, y: 0, duration: 0.6 }, '-=0.4');
+  tl.to('.hero-chip',    { opacity: 1, y: 0, duration: 0.6 })
+    .to('.hero-name',    { opacity: 1, y: 0, duration: 0.7 }, '-=0.3')
+    .to('.hero-sub',     { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+    .to('.hero-divider', { opacity: 1, y: 0, duration: 0.4 }, '-=0.35')
+    .to('.hero-cta',     { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
 </script>

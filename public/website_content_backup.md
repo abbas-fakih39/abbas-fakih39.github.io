@@ -1,0 +1,136 @@
+# Website Content Backup
+> Auto-generated from src/i18n/ui.ts — do not edit manually
+
+## FRENCH (fr)
+
+### Navigation
+- nav.home: Accueil
+- nav.about: Bio
+- nav.skills: Arsenal
+- nav.projects: Missions
+- nav.contact: Contact
+
+### Hero
+- hero.greeting: Bonjour, je suis
+- hero.subtitle: Développeur Full-Stack
+- hero.desc: Étudiant en Bac+3 développement web à MyDigitalSchool Lille, je recherche une alternance full-stack pour l'année 2026-2027. Je conçois des interfaces modernes, je développe des API robustes, et je livre des fonctionnalités utiles en équipe.
+- hero.download_cv: Télécharger CV
+- hero.my_projects: Voir les missions
+- hero.availability: Disponible en alternance · 2026-2027 · Lille
+
+### About
+- about.label: Profil // Bio
+- about.block1.title: Ce que je recherche
+- about.block1.body: Actuellement en 3ème année de développement web à Lille, je prépare mon Master / MBA Full-Stack pour la rentrée de septembre 2026. Je cherche une alternance d'un an pour intégrer une équipe où l'on construit de vrais produits. J'aime coder, résoudre des problèmes concrets et j'ai hâte de mettre mon énergie au service de vos projets.
+- about.block2.title: Côté technique
+- about.block2.body: Mon terrain de jeu favori est la stack MERN (React, Node.js). Je développe des interfaces fluides et des API sécurisées, en m'appuyant sur des outils comme Next.js, Laravel et Docker. Polyvalent et curieux, je m'adapte vite aux nouvelles technos et j'accorde une grande importance à la qualité du code et au travail en équipe.
+- about.stats.years: Années de formation
+- about.stats.projects: Projets livrés
+- about.stats.tech: Technologies
+- about.terminal.status: STATUS: EN RECHERCHE
+- about.terminal.location: Lille, France
+- about.terminal.education: Bac+3 — MyDigitalSchool
+- about.terminal.email: abbassfakih54321@outlook.com
+
+### Skills
+- skills.label: Tech Stack // Arsenal
+- skills.group1: Stack principale
+- skills.group2: Complémentaires
+- skills.group3: Méthode
+- skills.cando: Ce que je peux faire efficacement
+- skills.cando1: Concevoir et développer des interfaces web modernes et responsives.
+- skills.cando2: Créer des API sécurisées (authentification, rôles, validation).
+- skills.cando3: Connecter front-end et back-end sur des projets full-stack.
+- skills.cando4: Collaborer en équipe avec GitHub, Postman et outils Agile.
+
+### Projects
+- projects.label: Déployés // Missions
+- projects.github: Voir toutes les missions sur GitHub
+
+### Contact
+- contact.label: Transmission // Connect
+- contact.cta1: Construisons
+- contact.cta2: quelque chose.
+- contact.subtext: Disponible pour une alternance full-stack 2026-2027. N'hésitez pas à me contacter pour discuter de votre projet.
+- contact.form.name: Votre Nom
+- contact.form.email: Votre Email
+- contact.form.subject: Sujet
+- contact.form.message: Message
+- contact.form.send: → Envoyer
+- contact.protocols: Protocoles de connexion
+
+### Footer
+- footer.end: Fin de transmission
+- footer.copyright: Abbas Zein Fakih
+
+---
+
+## ENGLISH (en)
+
+### Navigation
+- nav.home: Home
+- nav.about: Bio
+- nav.skills: Arsenal
+- nav.projects: Missions
+- nav.contact: Contact
+
+### Hero
+- hero.greeting: Hello, I am
+- hero.subtitle: Full-Stack Developer
+- hero.desc: 3rd-year web development student at MyDigitalSchool Lille, looking for a full-stack work-study program for 2026-2027. I design modern interfaces, develop robust APIs, and deliver useful features in an agile team.
+- hero.download_cv: Download Resume
+- hero.my_projects: View missions
+- hero.availability: Available for work-study · 2026-2027 · Lille
+
+### About
+- about.label: Profile // Bio
+- about.block1.title: What I am looking for
+- about.block1.body: Currently in my 3rd year of web development in Lille, I am preparing for my Full-Stack Master/MBA starting in September 2026. I am looking for a one-year work-study program to join a team building real products. I love coding, solving concrete problems, and I can't wait to bring my energy to your projects.
+- about.block2.title: Technical side
+- about.block2.body: My favorite playground is the MERN stack (React, Node.js). I develop fluid interfaces and secure APIs, relying on tools like Next.js, Laravel, and Docker. Versatile and curious, I adapt quickly to new technologies and place great importance on code quality and teamwork.
+- about.stats.years: Years training
+- about.stats.projects: Projects delivered
+- about.stats.tech: Technologies
+
+### Skills
+- skills.group1: Core Stack
+- skills.group2: Complementary
+- skills.group3: Workflow
+- skills.cando: What I can do efficiently
+- skills.cando1: Design and develop modern, responsive web interfaces.
+- skills.cando2: Create secure APIs (authentication, roles, validation).
+- skills.cando3: Connect front-end and back-end on full-stack projects.
+- skills.cando4: Collaborate in teams using GitHub, Postman, and Agile tools.
+
+### Projects
+- projects.label: Deployed // Missions
+- projects.github: See all missions on GitHub
+
+### Contact
+- contact.label: Transmission // Connect
+- contact.cta1: Let's build
+- contact.cta2: something.
+- contact.subtext: Available for a full-stack work-study 2026-2027. Feel free to reach out to discuss your project.
+- contact.form.name: Your Name
+- contact.form.email: Your Email
+- contact.form.subject: Subject
+- contact.form.message: Message
+- contact.form.send: → Send Message
+- contact.protocols: Connection protocols
+
+### Footer
+- footer.end: End of transmission
+- footer.copyright: Abbas Zein Fakih
+
+---
+
+## Key Technical Info (preserved across redesigns)
+- EmailJS service: service_jq5ib7h
+- EmailJS template: template_m3asgjl
+- EmailJS public key: bLECYSz1NM7GcjAev
+- CV path: /cv/mon-cv.pdf
+- Photo: /images/votre-photo.jpg
+- Email: abbassfakih54321@outlook.com
+- Phone: +33 07 69 51 81 92
+- GitHub: https://github.com/abbas-fakih39
+- LinkedIn: https://www.linkedin.com/in/abbas-zein-fakih-b8649022b/
