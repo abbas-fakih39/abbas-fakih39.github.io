@@ -7,9 +7,10 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
 
 <a
   href={`/${otherLang}`}
-  class="font-mono text-[12px] text-fg-mid hover:text-fg transition-colors duration-200"
+  class="inline-flex items-center min-h-[44px] text-[13px] font-medium text-muted hover:text-signal transition-colors duration-200"
+  aria-label={otherLang === 'fr' ? 'Passer en français' : 'Switch to English'}
 >
-  <span class="text-fg font-medium">{lang.toUpperCase()}</span>
-  <span class="text-fg-dim mx-0.5">/</span>
+  <span class="text-ink font-semibold">{lang.toUpperCase()}</span>
+  <span class="mx-1 text-line">/</span>
   <span>{otherLang.toUpperCase()}</span>
 </a>

@@ -12,75 +12,76 @@ const protocols = [
 ];
 ---
 
-<section id="contact" class="border-t border-border">
+<section id="contact" class="pt-24 sm:pt-32">
   <div class="max-w-content w-full mx-auto px-6 lg:px-12">
 
-    <!-- Section header -->
-    <div class="flex items-center gap-4 py-5 border-b border-border section-header-anim">
-      <span class="font-mono text-[11px] text-fg-dim tracking-widest">04</span>
-      <span class="w-px h-4 bg-border"></span>
-      <span class="font-mono text-[11px] uppercase tracking-widest text-fg-dim">{t('contact.label')}</span>
-    </div>
+    <!-- Section title over drawn rule -->
+    <h2 class="section-title type-display uppercase text-fluid-title text-ink pb-4">
+      {t('contact.title')}
+    </h2>
+    <div class="section-rule w-full" aria-hidden="true"></div>
 
     <!-- CTA headline -->
-    <div class="py-12 sm:py-16 border-b border-border fade-up">
-      <h2 class="font-display font-bold text-fluid-display text-fg leading-tight">
-        {t('contact.cta1')}<br />
-        <span class="text-accent">{t('contact.cta2')}</span>
-      </h2>
-    </div>
+    <p class="contact-cta mt-14 sm:mt-20 type-display uppercase text-fluid-display text-ink">
+      {t('contact.cta1')}<br />
+      <span class="text-signal">{t('contact.cta2')}</span>
+    </p>
 
     <!-- Split: info | form -->
-    <div class="grid grid-cols-1 lg:grid-cols-2">
+    <div class="mt-14 sm:mt-20 grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-14 lg:gap-20 pb-24 sm:pb-32">
 
       <!-- Left: subtext + links -->
-      <div class="py-12 sm:py-14 lg:border-r lg:border-border lg:pr-14 fade-up">
-        <p class="text-fg-mid leading-relaxed text-[15px] mb-10 max-w-sm">
+      <div class="contact-info">
+        <p class="text-muted leading-relaxed max-w-sm mb-12">
           {t('contact.subtext')}
         </p>
 
-        <p class="font-mono text-[10px] tracking-widest uppercase text-fg-dim mb-5">
+        <h3 class="text-base font-bold text-ink mb-6">
           {t('contact.protocols')}
-        </p>
+        </h3>
 
-        <div class="space-y-4">
+        <ul class="space-y-1">
           {protocols.map((p) => (
-            <a
-              href={p.href}
-              target={p.external ? '_blank' : undefined}
-              rel={p.external ? 'noopener noreferrer' : undefined}
-              class="flex items-baseline gap-3 group"
-            >
-              <span class="font-mono text-[10px] tracking-wide uppercase text-fg-dim w-16 flex-shrink-0">{p.label}</span>
-              <span class="text-[13px] text-fg-mid group-hover:text-accent transition-colors duration-200">{p.value}</span>
-            </a>
+            <li>
+              <a
+                href={p.href}
+                target={p.external ? '_blank' : undefined}
+                rel={p.external ? 'noopener noreferrer' : undefined}
+                class="group flex items-baseline gap-4 py-2 min-h-[44px]"
+              >
+                <span class="text-[13px] font-semibold text-ink w-20 flex-shrink-0">{p.label}</span>
+                <span class="text-[15px] text-muted group-hover:text-signal transition-colors duration-200 break-all">{p.value}</span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
-      <!-- Right: form -->
-      <div class="py-12 sm:py-14 lg:pl-14 fade-up border-t lg:border-t-0 border-border">
+      <!-- Right: form on raised panel -->
+      <div class="contact-form-panel bg-surface border border-line rounded-[4px] p-7 sm:p-10">
         <form id="contact-form" class="space-y-7">
-          <div class="form-field">
-            <input type="text"  id="name"    name="name"    placeholder=" " required />
-            <label for="name">{t('contact.form.name')}</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
+            <div class="form-field">
+              <label for="name">{t('contact.form.name')}</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-field">
+              <label for="email">{t('contact.form.email')}</label>
+              <input type="email" id="email" name="email" required />
+            </div>
           </div>
           <div class="form-field">
-            <input type="email" id="email"   name="email"   placeholder=" " required />
-            <label for="email">{t('contact.form.email')}</label>
-          </div>
-          <div class="form-field">
-            <input type="text"  id="subject" name="subject" placeholder=" " required />
             <label for="subject">{t('contact.form.subject')}</label>
+            <input type="text" id="subject" name="subject" required />
           </div>
           <div class="form-field">
-            <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
             <label for="message">{t('contact.form.message')}</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
           </div>
           <button
             type="submit"
             id="submit-btn"
-            class="px-6 py-2.5 rounded-lg bg-accent text-white text-[13px] font-medium hover:bg-blue-700 transition-colors duration-200 disabled:opacity-60"
+            class="px-7 py-3.5 bg-signal text-signal-ink text-sm font-semibold hover:brightness-110 transition-[filter] duration-200 disabled:opacity-60"
           >
             {t('contact.form.send')}
           </button>
@@ -107,7 +108,7 @@ const protocols = [
       emailjs.sendForm('service_jq5ib7h', 'template_m3asgjl', form)
         .then(() => {
           btn.textContent = '✓ Sent';
-          btn.style.background = '#22c55e';
+          btn.style.background = 'var(--ok)';
           form.reset();
           setTimeout(() => {
             btn.textContent = originalText;
@@ -117,7 +118,7 @@ const protocols = [
         })
         .catch(() => {
           btn.textContent = '✕ Error';
-          btn.style.background = '#ef4444';
+          btn.style.background = 'var(--danger)';
           setTimeout(() => {
             btn.textContent = originalText;
             btn.style.background = '';
@@ -134,16 +135,24 @@ const protocols = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.to('#contact .section-header-anim', {
-    opacity: 1, y: 0, duration: 0.6,
-    scrollTrigger: { trigger: '#contact', start: 'top 78%' },
-  });
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  gsap.utils.toArray<HTMLElement>('#contact .fade-up').forEach((el, i) => {
-    gsap.to(el, {
-      opacity: 1, y: 0, duration: 0.7,
-      delay: i * 0.08,
-      scrollTrigger: { trigger: el, start: 'top 82%' },
+  if (!reduced) {
+    gsap.from('#contact .section-rule', {
+      scaleX: 0, duration: 1, ease: 'power4.out',
+      scrollTrigger: { trigger: '#contact', start: 'top 78%' },
     });
-  });
+    gsap.from('#contact .section-title', {
+      y: 24, opacity: 0, duration: 0.7, ease: 'power4.out',
+      scrollTrigger: { trigger: '#contact', start: 'top 78%' },
+    });
+    gsap.from('#contact .contact-cta', {
+      y: 30, opacity: 0, duration: 0.8, ease: 'power4.out',
+      scrollTrigger: { trigger: '#contact .contact-cta', start: 'top 85%' },
+    });
+    gsap.from(['#contact .contact-info', '#contact .contact-form-panel'], {
+      y: 36, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power4.out',
+      scrollTrigger: { trigger: '#contact .contact-info', start: 'top 85%' },
+    });
+  }
 </script>

@@ -3,21 +3,24 @@
 ## Project Overview
 Astro JS static portfolio site deployed to GitHub Pages at `https://abbas-fakih39.github.io`.
 Bilingual (FR/EN) via `src/i18n/ui.ts`. All text content lives there — never hardcode strings in components.
+Product context lives in `PRODUCT.md`; the full design system lives in `DESIGN.md`. Read both before design work.
 
-## Design: Editorial Brutalist (Completed May 2026)
-- **Colors:** `#0A0A0A` bg · `#F2F2F2` text · `#E2FF00` accent · `#666666` muted · `#2A2A2A` rules/dim
-- **Fonts:** Fraunces (display/headlines) · Inter (body) · JetBrains Mono (labels/mono)
-- **Pattern:** Oversized stacked name in Hero, horizontal ruled dividers between every section, numbered project rows, 3-column ruled skills grid
+## Design: "Cobalt Drenched" (Completed July 2026)
+- **Strategy:** Drenched — deep cobalt is the whole site surface; a single cyan "signal" accent. Type-led, no photography.
+- **Tokens** (OKLCH, in `src/styles/global.css`, mirrored as Tailwind colors `bg/surface/line/ink/muted/signal/signal-ink`): bg `oklch(0.27 0.085 262)` · ink `oklch(0.965 0.01 262)` · muted `oklch(0.78 0.045 262)` · signal cyan `oklch(0.87 0.13 195)` (fills carry dark `--signal-ink` text)
+- **Font:** Archivo Variable only (`@fontsource-variable/archivo/wdth.css`, self-hosted). Display style = `.type-display` (font-stretch 125%, wght 850, letter-spacing −0.02em). No monospace, no second family.
+- **Section grammar:** display-size title (from `*.title` i18n keys) over a full-width `.section-rule` that draws in on scroll. Never numbered markers or tracked-uppercase eyebrow labels.
+- **Signatures:** left-aligned ABBAS/FAKIH poster hero with masked line reveal · cyan-sweep hover on project rows · comma-run skills (no pills) · stats written into a sentence with cyan numbers.
 
 ## Tech Stack
 - Astro 6 (static output) + React + Tailwind CSS 3
 - GSAP 3.15.0 (npm, module imports in component `<script>` blocks)
-- Lenis 1.3.23 (smooth scroll, initialized in BaseLayout.astro)
-- Framer Motion 12 (installed, used in ScrollReveal.tsx — not yet integrated into pages)
+- Lenis 1.3.23 (smooth scroll, initialized in BaseLayout.astro, skipped under reduced motion)
+- Framer Motion 12 (installed, used in ScrollReveal.tsx — not integrated into pages)
 
 ## Dev Commands
 ```bash
-npm run dev      # local dev server → http://localhost:4321
+npm run dev      # local dev server → http://localhost:4700 (4321 is Windows-reserved on this machine)
 npm run build    # production build → ./dist
 npm run preview  # serve built output (production-accurate)
 ```
@@ -30,7 +33,7 @@ Push to `main` → GitHub Actions auto-deploys.
 - **Language routing** in `src/pages/[lang]/index.astro` — generates `/fr/` and `/en/` at build time
 
 ## Animation Pattern
-All sections use CSS initial states (`.fade-up { opacity:0; transform:translateY(30px) }` etc. in `global.css`) and GSAP ScrollTrigger `gsap.to()` to animate in. Hero uses timeline on page load. Do NOT use `gsap.from()` on elements that have CSS initial states — use `gsap.to()` instead.
+Content is **visible by default** — no CSS `opacity:0` initial states. All animations use `gsap.from()` so JS sets initial states at runtime (no-JS still renders everything). Every component script and the Lenis init are guarded by `matchMedia('(prefers-reduced-motion: reduce)')`. Easing: `power4.out`, no bounce.
 
 Component script structure:
 ```astro
@@ -38,27 +41,17 @@ Component script structure:
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
-  // animations here
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) { /* gsap.from(...) animations */ }
 </script>
 ```
 
-## What Was Done (Redesign Session)
-- [x] tailwind.config.js — new palette (bg/fg/accent), Fraunces display font, fluid type scale
-- [x] src/styles/global.css — new CSS variables, animation initial states, form-editorial class
-- [x] src/layouts/BaseLayout.astro — Fraunces font, Lenis + GSAP init, removed GSAP CDN
-- [x] src/components/Header.astro — sticky top bar with nav, FR/EN
-- [x] src/components/LanguageSwitcher.astro — updated to new color tokens
-- [x] src/components/Hero.astro — stacked ABBAS/ZEIN/FAKIH. with ruled lines + GSAP curtain reveal
-- [x] src/components/About.astro — stats (3/5+/10+) in ruled columns + two text blocks
-- [x] src/components/Skills.astro — 3-column ruled grid (Core/Complementary/Workflow) + cando
-- [x] src/components/Projects.astro — numbered editorial rows (01–05) with tech + arrow
-- [x] src/components/Contact.astro — "Construisons quelque chose." + split form/links layout
-- [x] src/components/Footer.astro — single ruled row, copyright + end of transmission
+## Accessibility baseline (don't regress)
+- All text roles pass WCAG AA on cobalt (`--muted` is the floor for body-size text)
+- Mobile nav: full-screen overlay in Header.astro (hamburger, aria-expanded, Escape closes)
+- Focus-visible: 2px cyan outline globally; touch targets ≥44px
 
 ## What Could Still Be Done (Optional Enhancements)
-- [ ] Integrate `ScrollReveal.tsx` React component into About text blocks (`client:load`)
-- [ ] Add hover accent color (`#E2FF00`) on project row titles (currently transitions on group-hover — verify it works in browser)
-- [ ] Add a photo somewhere (currently removed from hero; could add to About stats row)
-- [ ] Add Open Graph meta tags for social sharing preview
-- [ ] Add favicon
-- [ ] Consider `npm run preview` over `npm run dev` for GSAP-accurate animation testing
+- [ ] og:image (1200×630 cobalt/cyan card) for richer social previews
+- [ ] Real project screenshots to replace the unused stock logos in `public/images/`
+- [ ] Remove unused components: `src/components/ui/*` (TextScramble, TiltCard, Typewriter, ScrollReveal) and unused i18n keys (`about.terminal.*`, `hero.greeting`, `hero.desc`, `projects.featured`)

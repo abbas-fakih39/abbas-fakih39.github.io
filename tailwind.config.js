@@ -6,25 +6,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg:           '#FAFAFA',
-        surface:      '#F0F0F0',
-        border:       '#E2E2E2',
-        fg:           '#111111',
-        'fg-mid':     '#555555',
-        'fg-dim':     '#999999',
-        accent:       '#0066FF',
-        'accent-bg':  '#EEF3FF',
+        bg:           'var(--bg)',
+        surface:      'var(--surface)',
+        line:         'var(--line)',
+        ink:          'var(--ink)',
+        muted:        'var(--muted)',
+        signal:       'var(--signal)',
+        'signal-ink': 'var(--signal-ink)',
       },
       fontFamily: {
-        sans:    ['"DM Sans"',  'system-ui', 'sans-serif'],
-        mono:    ['"DM Mono"',  'monospace'],
-        display: ['"DM Sans"',  'system-ui', 'sans-serif'],
+        sans: ['"Archivo Variable"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        'fluid-hero':    ['clamp(3.5rem, 10vw, 8rem)',   { lineHeight: '0.9'  }],
-        'fluid-display': ['clamp(2rem,   5.5vw, 5rem)',  { lineHeight: '1.05' }],
-        'fluid-xl':      ['clamp(1.25rem, 3vw, 2.5rem)', { lineHeight: '1.1'  }],
-        'fluid-sm':      ['clamp(0.8rem,  1.2vw, 0.9rem)',{ lineHeight: '1.7' }],
+        'fluid-hero':    ['clamp(3.25rem, 10vw, 6rem)',    { lineHeight: '0.98' }],
+        'fluid-display': ['clamp(2rem, 5vw, 3.5rem)',      { lineHeight: '1.05' }],
+        'fluid-title':   ['clamp(1.6rem, 3.5vw, 2.5rem)',  { lineHeight: '1.1'  }],
+        'fluid-xl':      ['clamp(1.15rem, 2.2vw, 1.5rem)', { lineHeight: '1.35' }],
       },
       maxWidth: {
         content: '1200px',

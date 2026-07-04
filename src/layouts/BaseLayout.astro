@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/archivo/wdth.css';
 import '../styles/global.css';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const { title, description = "Portfolio Développeur Full-Stack — Abbas Zein Fakih", lang } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://abbas-fakih39.github.io');
 ---
 
 <!doctype html>
@@ -20,13 +22,17 @@ const { title, description = "Portfolio Développeur Full-Stack — Abbas Zein F
     <title>{title}</title>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="theme-color" content="#1D2B63" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
   </head>
   <body>
     <slot />
@@ -38,18 +44,22 @@ const { title, description = "Portfolio Développeur Full-Stack — Abbas Zein F
 
       gsap.registerPlugin(ScrollTrigger);
 
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      lenis.on('scroll', () => ScrollTrigger.update());
+      if (!reduced) {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
 
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
+        lenis.on('scroll', () => ScrollTrigger.update());
 
-      gsap.ticker.lagSmoothing(0);
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+      }
     </script>
   </body>
 </html>

@@ -10,9 +10,9 @@ const blocks = [
 ];
 
 const stats = [
-  { value: '3',   label: t('about.stats.years') },
-  { value: '5+',  label: t('about.stats.projects') },
-  { value: '10+', label: t('about.stats.tech') },
+  { value: '3',   label: t('about.stats.years').toLowerCase() },
+  { value: '5+',  label: t('about.stats.projects').toLowerCase() },
+  { value: '10+', label: t('about.stats.tech').toLowerCase() },
 ];
 
 const statement = lang === 'fr'
@@ -20,55 +20,38 @@ const statement = lang === 'fr'
   : 'Full-stack developer based in Lille, building interfaces and APIs for real products.';
 ---
 
-<section id="about" class="border-t border-border">
+<section id="about" class="pt-24 sm:pt-32">
   <div class="max-w-content w-full mx-auto px-6 lg:px-12">
 
-    <!-- Section header -->
-    <div class="flex items-center gap-4 py-5 border-b border-border section-header-anim">
-      <span class="font-mono text-[11px] text-fg-dim tracking-widest">01</span>
-      <span class="w-px h-4 bg-border"></span>
-      <span class="font-mono text-[11px] uppercase tracking-widest text-fg-dim">{t('about.label')}</span>
-    </div>
+    <!-- Section title over drawn rule -->
+    <h2 class="section-title type-display uppercase text-fluid-title text-ink pb-4">
+      {t('about.title')}
+    </h2>
+    <div class="section-rule w-full" aria-hidden="true"></div>
 
     <!-- Statement -->
-    <p class="mt-12 sm:mt-16 font-display font-semibold leading-tight max-w-3xl fade-up"
-       style="font-size: clamp(1.5rem, 3.5vw, 2.4rem);">
+    <p class="about-statement mt-14 sm:mt-20 font-semibold text-ink leading-snug max-w-3xl"
+       style="font-size: clamp(1.5rem, 3.2vw, 2.4rem); font-stretch: 110%;">
       {statement}
     </p>
 
-    <!-- Stats + Photo row -->
-    <div class="mt-12 sm:mt-16 grid grid-cols-3 lg:grid-cols-4 border-t border-border fade-up">
+    <!-- Stats as a running line -->
+    <p class="about-stats mt-10 text-fluid-xl font-semibold text-ink max-w-3xl">
       {stats.map((stat, i) => (
-        <div class={`py-8 sm:py-10 border-r border-border pr-6 sm:pr-10 ${i > 0 ? 'pl-6 sm:pl-10' : ''}`}>
-          <span class="block font-display font-bold text-fg leading-none"
-                style="font-size: clamp(2rem, 5vw, 3.5rem);">
-            {stat.value}
-          </span>
-          <span class="block mt-2 font-mono text-[10px] tracking-widest uppercase text-fg-dim">
-            {stat.label}
-          </span>
-        </div>
+        <>
+          <span class="text-signal">{stat.value}</span> {stat.label}{i < stats.length - 1 && <span class="text-muted mx-2" aria-hidden="true">·</span>}
+        </>
       ))}
-      <!-- Photo (desktop only, 4th column) -->
-      <div class="hidden lg:flex items-center justify-end pl-10 py-8">
-        <div class="w-28 h-36 rounded-lg overflow-hidden bg-surface border border-border">
-          <img
-            src="/images/votre-photo.jpg"
-            alt="Abbas Fakih"
-            class="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-    </div>
+    </p>
 
-    <!-- Two text blocks -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 border-t border-border">
-      {blocks.map((block, i) => (
-        <div class={`py-10 sm:py-14 fade-up ${i === 0 ? 'lg:border-r lg:border-border lg:pr-12' : 'lg:pl-12'} ${i > 0 ? 'border-t lg:border-t-0 border-border' : ''}`}>
-          <p class="font-mono text-[10px] tracking-widest uppercase text-fg-dim mb-5">
+    <!-- Two text blocks, asymmetric -->
+    <div class="mt-16 sm:mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+      {blocks.map((block) => (
+        <div class="about-block max-w-prose">
+          <h3 class="text-base font-bold text-ink mb-4">
             {block.title}
-          </p>
-          <p class="text-fg-mid leading-relaxed text-[15px] sm:text-base">
+          </h3>
+          <p class="text-muted leading-relaxed">
             {block.body}
           </p>
         </div>
@@ -84,16 +67,28 @@ const statement = lang === 'fr'
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.to('#about .section-header-anim', {
-    opacity: 1, y: 0, duration: 0.6,
-    scrollTrigger: { trigger: '#about', start: 'top 78%' },
-  });
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  gsap.utils.toArray<HTMLElement>('#about .fade-up').forEach((el, i) => {
-    gsap.to(el, {
-      opacity: 1, y: 0, duration: 0.7,
-      delay: i * 0.08,
-      scrollTrigger: { trigger: el, start: 'top 82%' },
+  if (!reduced) {
+    gsap.from('#about .section-rule', {
+      scaleX: 0, duration: 1, ease: 'power4.out',
+      scrollTrigger: { trigger: '#about', start: 'top 78%' },
     });
-  });
+    gsap.from('#about .section-title', {
+      y: 24, opacity: 0, duration: 0.7, ease: 'power4.out',
+      scrollTrigger: { trigger: '#about', start: 'top 78%' },
+    });
+    gsap.from('#about .about-statement', {
+      y: 30, opacity: 0, duration: 0.8, ease: 'power4.out',
+      scrollTrigger: { trigger: '#about .about-statement', start: 'top 85%' },
+    });
+    gsap.from('#about .about-stats', {
+      y: 24, opacity: 0, duration: 0.7, ease: 'power4.out',
+      scrollTrigger: { trigger: '#about .about-stats', start: 'top 88%' },
+    });
+    gsap.from('#about .about-block', {
+      y: 32, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power4.out',
+      scrollTrigger: { trigger: '#about .about-block', start: 'top 85%' },
+    });
+  }
 </script>

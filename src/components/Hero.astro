@@ -5,56 +5,66 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section id="home" class="min-h-[100svh] flex flex-col items-center justify-center text-center px-6 pt-14">
+<section id="home" class="min-h-[100svh] flex flex-col justify-center pt-16">
+  <div class="max-w-content w-full mx-auto px-6 lg:px-12">
 
-  <!-- Status chip -->
-  <div class="hero-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent-bg mb-10">
-    <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
-    <span class="font-mono text-[11px] text-accent tracking-wide">{t('hero.availability')}</span>
+    <!-- Availability: plain sentence with signal marker -->
+    <p class="hero-line flex items-center gap-3 text-sm font-medium text-muted mb-8">
+      <span class="w-2 h-2 rounded-[2px] bg-signal inline-block flex-shrink-0" aria-hidden="true"></span>
+      {t('hero.availability')}
+    </p>
+
+    <!-- Poster name -->
+    <h1 class="type-display uppercase text-fluid-hero text-ink">
+      <span class="hero-mask block overflow-hidden"><span class="hero-line-inner block">Abbas</span></span>
+      <span class="hero-mask block overflow-hidden"><span class="hero-line-inner block">Zein Fakih</span></span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="hero-line mt-8 text-fluid-xl text-ink font-medium max-w-xl">
+      {t('hero.subtitle')} <span class="text-muted">— Lille, France</span>
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-line mt-12 flex flex-wrap items-center gap-6">
+      <a
+        href="/cv/mon-cv.pdf"
+        download
+        class="inline-flex items-center gap-2 px-7 py-3.5 bg-signal text-signal-ink text-sm font-semibold hover:brightness-110 transition-[filter] duration-200"
+      >
+        {t('hero.download_cv')}
+        <span aria-hidden="true">↓</span>
+      </a>
+      <a
+        href={`/${lang}#projects`}
+        class="inline-flex items-center gap-2 py-3 text-sm font-semibold text-ink underline underline-offset-8 decoration-line hover:decoration-signal hover:text-signal transition-colors duration-200"
+      >
+        {t('hero.my_projects')}
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
   </div>
-
-  <!-- Name -->
-  <h1 class="hero-name font-display font-bold text-fluid-hero text-fg leading-[0.9] tracking-tight mb-6">
-    Abbas Fakih
-  </h1>
-
-  <!-- Subtitle -->
-  <p class="hero-sub text-fluid-xl text-fg-mid font-normal mb-8 max-w-md">
-    {t('hero.subtitle')} &mdash; Lille, France
-  </p>
-
-  <!-- Divider -->
-  <div class="hero-divider w-12 h-px bg-border mb-10"></div>
-
-  <!-- CTAs -->
-  <div class="hero-cta flex flex-wrap items-center justify-center gap-4">
-    <a
-      href="/cv/mon-cv.pdf"
-      download
-      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-white text-[13px] font-medium hover:bg-blue-700 transition-colors duration-200"
-    >
-      {t('hero.download_cv')}
-      <span class="text-xs">↓</span>
-    </a>
-    <a
-      href={`/${lang}#projects`}
-      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-[13px] font-medium text-fg-mid hover:border-fg hover:text-fg transition-all duration-200"
-    >
-      {t('hero.my_projects')}
-      <span class="text-xs">→</span>
-    </a>
-  </div>
-
 </section>
 
 <script>
   import gsap from 'gsap';
 
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  tl.to('.hero-chip',    { opacity: 1, y: 0, duration: 0.6 })
-    .to('.hero-name',    { opacity: 1, y: 0, duration: 0.7 }, '-=0.3')
-    .to('.hero-sub',     { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-    .to('.hero-divider', { opacity: 1, y: 0, duration: 0.4 }, '-=0.35')
-    .to('.hero-cta',     { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
+  if (!reduced) {
+    const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+    tl.from('.hero-line-inner', {
+      yPercent: 110,
+      duration: 1,
+      stagger: 0.12,
+    })
+      .from('.hero-line', {
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        stagger: 0.1,
+      }, '-=0.6');
+  }
 </script>

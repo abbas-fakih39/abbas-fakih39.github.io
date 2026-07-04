@@ -4,25 +4,116 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const links = [
+  { href: `/${lang}#about`,    label: t('nav.about') },
+  { href: `/${lang}#skills`,   label: t('nav.skills') },
+  { href: `/${lang}#projects`, label: t('nav.projects') },
+  { href: `/${lang}#contact`,  label: t('nav.contact') },
+];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 h-14 bg-bg/95 backdrop-blur-sm border-b border-border">
+<header class="fixed top-0 left-0 right-0 z-50 h-16 header-scrim border-b border-line">
   <div class="max-w-content w-full mx-auto flex items-center justify-between h-full px-6 lg:px-12">
 
     <a
       href={`/${lang}`}
-      class="font-mono text-sm font-medium text-fg hover:text-accent transition-colors duration-200"
+      class="type-display text-[15px] uppercase text-ink hover:text-signal transition-colors duration-200"
     >
-      AF
+      Abbas Zein Fakih
     </a>
 
     <nav class="hidden md:flex items-center gap-8" aria-label="Navigation">
-      <a href={`/${lang}#about`}    class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.about')}</a>
-      <a href={`/${lang}#skills`}   class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.skills')}</a>
-      <a href={`/${lang}#projects`} class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.projects')}</a>
-      <a href={`/${lang}#contact`}  class="text-[13px] font-medium text-fg-mid hover:text-fg transition-colors duration-200">{t('nav.contact')}</a>
+      {links.map((link) => (
+        <a href={link.href} class="text-sm font-medium text-muted hover:text-signal transition-colors duration-200">
+          {link.label}
+        </a>
+      ))}
     </nav>
 
-    <LanguageSwitcher />
+    <div class="flex items-center gap-2">
+      <span class="hidden md:block"><LanguageSwitcher /></span>
+
+      <!-- Mobile menu toggle -->
+      <button
+        id="menu-toggle"
+        class="md:hidden w-11 h-11 -mr-2 flex flex-col items-center justify-center gap-[5px] text-ink"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="menu-bar block w-6 h-[2px] bg-current transition-transform duration-300"></span>
+        <span class="menu-bar block w-6 h-[2px] bg-current transition-opacity duration-300"></span>
+        <span class="menu-bar block w-6 h-[2px] bg-current transition-transform duration-300"></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- Mobile menu overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 md:hidden bg-bg flex-col justify-center px-6 hidden"
+>
+  <nav class="flex flex-col gap-2" aria-label="Navigation mobile">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        class="mobile-link type-display uppercase text-fluid-display text-ink hover:text-signal transition-colors duration-200 py-2"
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+  <div class="mt-12 pt-6 border-t border-line">
+    <LanguageSwitcher />
+  </div>
+</div>
+
+<style>
+  .header-scrim {
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  #mobile-menu.open {
+    display: flex;
+  }
+
+  #menu-toggle[aria-expanded="true"] .menu-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  #menu-toggle[aria-expanded="true"] .menu-bar:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle[aria-expanded="true"] .menu-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      menu.classList.toggle('open', open);
+      menu.classList.toggle('hidden', !open);
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') setOpen(false);
+    });
+  }
+</script>

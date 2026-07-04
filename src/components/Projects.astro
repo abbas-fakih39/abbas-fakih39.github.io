@@ -6,6 +6,14 @@ const t = useTranslations(lang);
 
 const projects = [
   {
+    title: 'Nexus',
+    desc: lang === 'fr'
+      ? "Application de gestion pour petits commerces — stock, ventes, achats, factures PDF et RH."
+      : 'Management app for small businesses — inventory, sales, purchases, PDF invoicing and HR.',
+    tech: ['React', 'NestJS', 'PostgreSQL'],
+    link: 'https://github.com/abbas-fakih39/nexus',
+  },
+  {
     title: 'Kits & Kids',
     desc: lang === 'fr'
       ? "App mobile de location d'équipements bébé — calendrier et réservation."
@@ -48,74 +56,55 @@ const projects = [
 ];
 ---
 
-<section id="projects" class="border-t border-border">
+<section id="projects" class="pt-24 sm:pt-32">
   <div class="max-w-content w-full mx-auto px-6 lg:px-12">
-
-    <!-- Section header -->
-    <div class="flex items-center gap-4 py-5 border-b border-border section-header-anim">
-      <span class="font-mono text-[11px] text-fg-dim tracking-widest">03</span>
-      <span class="w-px h-4 bg-border"></span>
-      <span class="font-mono text-[11px] uppercase tracking-widest text-fg-dim">{t('projects.label')}</span>
-    </div>
-
+    <!-- Section title over drawn rule -->
+    <h2 class="section-title type-display uppercase text-fluid-title text-ink pb-4">
+      {t('projects.title')}
+    </h2>
+    <div class="section-rule w-full" aria-hidden="true"></div>
   </div>
 
-  <!-- Project rows -->
-  {projects.map((project, i) => (
-    <a
-      href={project.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="group block border-t border-border hover:bg-surface transition-colors duration-200 fade-up"
-    >
-      <div class="max-w-content mx-auto px-6 lg:px-12 py-6 sm:py-7 flex items-center justify-between gap-6">
-
-        <!-- Left: number + title + desc -->
-        <div class="flex items-start sm:items-center gap-5 sm:gap-8 min-w-0 flex-1">
-          <span class="font-mono text-[11px] text-fg-dim flex-shrink-0 tabular-nums mt-0.5 sm:mt-0">
-            0{i + 1}
-          </span>
-          <div class="min-w-0">
-            <h3 class="font-display font-semibold text-lg sm:text-xl text-fg group-hover:text-accent transition-colors duration-200 leading-tight">
-              {project.title}
-            </h3>
-            <p class="hidden sm:block mt-1 text-[13px] text-fg-dim leading-relaxed truncate max-w-lg">
-              {project.desc}
-            </p>
-          </div>
-        </div>
-
-        <!-- Right: tech pills + arrow -->
-        <div class="flex items-center gap-3 flex-shrink-0">
-          <div class="hidden lg:flex items-center gap-2">
-            {project.tech.map((tech) => (
-              <span class="px-2.5 py-1 rounded-full bg-surface border border-border text-[11px] font-mono text-fg-dim">
-                {tech}
-              </span>
-            ))}
-          </div>
-          <span class="text-fg-dim group-hover:text-accent group-hover:translate-x-1 transition-all duration-200 text-base ml-2">→</span>
-        </div>
-
-      </div>
-    </a>
-  ))}
-
-  <!-- GitHub CTA -->
-  <div class="border-t border-border">
-    <div class="max-w-content mx-auto px-6 lg:px-12 py-8 fade-up">
+  <!-- Project rows with cyan sweep hover -->
+  <div class="mt-6">
+    {projects.map((project) => (
       <a
-        href="https://github.com/abbas-fakih39"
+        href={project.link}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 text-[13px] font-medium text-fg-mid hover:text-accent transition-colors duration-200"
+        class="project-row group relative block border-b border-line overflow-hidden"
       >
-        {t('projects.github')}
-        <span class="text-xs">→</span>
+        <span class="project-sweep absolute inset-0 bg-signal -translate-x-full group-hover:translate-x-0 group-focus-visible:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true"></span>
+
+        <div class="relative max-w-content mx-auto px-6 lg:px-12 py-8 sm:py-10 flex items-center justify-between gap-6">
+          <div class="min-w-0">
+            <h3 class="type-display uppercase text-fluid-title text-ink group-hover:text-signal-ink group-focus-visible:text-signal-ink transition-colors duration-200">
+              {project.title}
+            </h3>
+            <p class="mt-2 text-[15px] text-muted group-hover:text-signal-ink group-focus-visible:text-signal-ink transition-colors duration-200 max-w-2xl">
+              {project.desc}
+              <span class="font-semibold"> — {project.tech.join(' · ')}</span>
+            </p>
+          </div>
+
+          <span class="text-2xl text-muted group-hover:text-signal-ink group-hover:translate-x-2 group-focus-visible:text-signal-ink transition-all duration-300 flex-shrink-0" aria-hidden="true">→</span>
+        </div>
       </a>
-    </div>
+    ))}
   </div>
 
+  <!-- GitHub CTA -->
+  <div class="max-w-content mx-auto px-6 lg:px-12 py-10">
+    <a
+      href="https://github.com/abbas-fakih39"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="github-cta inline-flex items-center gap-2 py-2 text-sm font-semibold text-ink underline underline-offset-8 decoration-line hover:decoration-signal hover:text-signal transition-colors duration-200"
+    >
+      {t('projects.github')}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
 </section>
 
 <script>
@@ -124,16 +113,22 @@ const projects = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.to('#projects .section-header-anim', {
-    opacity: 1, y: 0, duration: 0.6,
-    scrollTrigger: { trigger: '#projects', start: 'top 78%' },
-  });
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  gsap.utils.toArray<HTMLElement>('#projects .fade-up').forEach((el, i) => {
-    gsap.to(el, {
-      opacity: 1, y: 0, duration: 0.6,
-      delay: i * 0.05,
-      scrollTrigger: { trigger: el, start: 'top 87%' },
+  if (!reduced) {
+    gsap.from('#projects .section-rule', {
+      scaleX: 0, duration: 1, ease: 'power4.out',
+      scrollTrigger: { trigger: '#projects', start: 'top 78%' },
     });
-  });
+    gsap.from('#projects .section-title', {
+      y: 24, opacity: 0, duration: 0.7, ease: 'power4.out',
+      scrollTrigger: { trigger: '#projects', start: 'top 78%' },
+    });
+    gsap.utils.toArray<HTMLElement>('#projects .project-row').forEach((row) => {
+      gsap.from(row, {
+        y: 44, opacity: 0, duration: 0.7, ease: 'power4.out',
+        scrollTrigger: { trigger: row, start: 'top 90%' },
+      });
+    });
+  }
 </script>

@@ -2,68 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Cobalt Drenched tokens (see DESIGN.md) ───────── */
 :root {
-  --bg:         #FAFAFA;
-  --surface:    #F0F0F0;
-  --border:     #E2E2E2;
-  --fg:         #111111;
-  --fg-mid:     #555555;
-  --fg-dim:     #999999;
-  --accent:     #0066FF;
-  --accent-bg:  #EEF3FF;
+  --bg:          oklch(0.27 0.085 262);
+  --bg-horizon:  oklch(0.31 0.09 262);
+  --surface:     oklch(0.32 0.09 262);
+  --line:        oklch(0.42 0.09 262);
+  --ink:         oklch(0.965 0.01 262);
+  --muted:       oklch(0.78 0.045 262);
+  --signal:      oklch(0.87 0.13 195);
+  --signal-ink:  oklch(0.22 0.06 235);
+  --ok:          oklch(0.85 0.13 155);
+  --danger:      oklch(0.80 0.12 25);
 }
 
 html {
   background: var(--bg);
-  color: var(--fg);
+  color: var(--ink);
 }
 
 body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'DM Sans', system-ui, sans-serif;
-  overflow-x: hidden;
+  background-color: var(--bg);
+  background-image: linear-gradient(to bottom, var(--bg-horizon), var(--bg));
+  background-repeat: no-repeat;
+  background-size: 100% 100vh;
+  color: var(--ink);
+  font-family: 'Archivo Variable', system-ui, sans-serif;
+  line-height: 1.65;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+/* ─── Display type: Archivo expanded ───────────────── */
+.type-display {
+  font-stretch: 125%;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
 
 ::selection {
-  background: var(--accent);
-  color: #fff;
+  background: var(--signal);
+  color: var(--signal-ink);
 }
 
-/* ─── Scroll offset for sticky header (56px = h-14) ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+/* ─── Scroll offset for fixed header (64px = h-16) ── */
 section[id] {
-  scroll-margin-top: 56px;
+  scroll-margin-top: 64px;
 }
 
-/* ─── Animation initial states ─────────────────────── */
-.hero-chip,
-.hero-name,
-.hero-sub,
-.hero-divider,
-.hero-cta {
-  opacity: 0;
-  transform: translateY(24px);
+/* ─── Focus ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-.section-header-anim {
-  opacity: 0;
-  transform: translateY(16px);
+/* ─── Section grammar: title over a drawn rule ─────── */
+.section-rule {
+  height: 1px;
+  background: var(--line);
+  transform-origin: left center;
 }
 
-.fade-up {
-  opacity: 0;
-  transform: translateY(28px);
-}
-
-/* ─── Contact Form ─────────────────────────────────── */
-.form-field {
-  position: relative;
+/* ─── Contact form ─────────────────────────────────── */
+.form-field label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
 }
 
 .form-field input,
@@ -71,39 +87,30 @@ section[id] {
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1.5px solid var(--border);
+  border-bottom: 1px solid var(--line);
   outline: none;
-  color: var(--fg);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9375rem;
-  padding: 1.4rem 0 0.6rem;
-  transition: border-color 0.2s ease;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.35rem 0 0.65rem;
+  transition: border-color 0.25s ease;
   resize: none;
 }
 
-.form-field input:focus,
-.form-field textarea:focus {
-  border-color: var(--accent);
+.form-field input:focus-visible,
+.form-field textarea:focus-visible {
+  outline: none;
+  border-bottom-color: var(--signal);
 }
 
-.form-field label {
-  position: absolute;
-  top: 1.4rem;
-  left: 0;
-  font-size: 0.6875rem;
-  color: var(--fg-dim);
-  font-family: 'DM Mono', monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: all 0.18s ease;
-  pointer-events: none;
-}
-
-.form-field input:focus ~ label,
-.form-field input:not(:placeholder-shown) ~ label,
-.form-field textarea:focus ~ label,
-.form-field textarea:not(:placeholder-shown) ~ label {
-  top: 0.2rem;
-  font-size: 0.5625rem;
-  color: var(--accent);
+/* ─── Reduced motion: component scripts also guard ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
